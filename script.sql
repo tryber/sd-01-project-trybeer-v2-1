@@ -52,6 +52,7 @@ INSERT INTO users (name, password, email, role)
 VALUES
 ('tryber', 'U2FsdGVkX1+VEr77ZZsY1np0AxvGEoaeyPooPgY/sDI=', 'tryber@gmail.com', 'admin');
 
+
 DELIMITER $$
 CREATE PROCEDURE `createUser`(IN nameValue VARCHAR(80),IN emailValue VARCHAR(50),IN passwordValue VARCHAR(64),IN roleValue VARCHAR(20))
 BEGIN

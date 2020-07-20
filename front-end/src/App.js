@@ -1,25 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from './context/index';
+import Products from './pages/Products';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import OrderUniqueAdmin from './pages/OrderUniqueAdmin';
+import OrdersAdmin from './pages/OrdersAdmin';
+import ProfileAdmin from './pages/ProfileAdmin';
+import Orders from './pages/Orders';
+import OneOrder from './pages/OneOrder';
+import MyProfile from './pages/MyProfile';
+import Checkout from './pages/Checkout';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/products" component={Products} />
+          <Route exact path="/admin/orders/:id" component={OrderUniqueAdmin} />
+          <Route exact path="/admin/orders" component={OrdersAdmin} />
+          <Route exact path="/admin/profile" component={ProfileAdmin} />
+          <Route exact path="/profile" component={MyProfile} />
+          <Route exact path="/checkout" component={Checkout} />
+          <Route exact path="/orders" component={Orders} />
+          <Route exact path="/orders/:id" component={OneOrder} />
+        </Switch>
+      </Router>
+    </Provider>
   );
 }
 

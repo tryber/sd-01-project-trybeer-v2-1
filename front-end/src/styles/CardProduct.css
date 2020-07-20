@@ -1,0 +1,108 @@
+.CardProduct {
+  align-items: center;
+  background: white;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 10px;
+  max-width: 300px;
+  min-width: 200px;
+  padding: 10px;
+  width: 40%;
+}
+
+.CardProduct img {
+  height: 100%;
+  object-fit: contain;
+  width: 90%;
+}
+
+.CardProduct .img-product {
+  align-items: center;
+  display: flex;
+  height: 150px;
+  justify-content: center;
+  width: 100%;
+}
+
+.CardProduct .div-qtd {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.CardProduct .product-price {
+  align-self: flex-start;
+  font-size: 20px;
+  height: 40px;
+}
+
+.CardProduct .product-name {
+  font-size: 20px;
+  height: 40px;
+  text-align: center;
+}
+
+.CardProduct .div-qtd .input-qtd {
+  font-size: 25px;
+  text-align: center;
+  width: 50%;
+}
+
+.CardProduct .div-qtd .btn-qtd {
+  background: transparent;
+  border: 0;
+  font-size: 40px;
+  width: 20%;
+}
+
+.CardProduct .div-qtd .btn-qtd:hover {
+  color: royalblue;
+  transform: scale( 1.2 );
+}
+
+.Products .list-products {
+  background: rgb( 15 , 163 , 107 );
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  padding-bottom: 120px;
+  padding-top: 80px;
+  width: 100%;
+}
+
+.Products .btn-checkout {
+  background: greenyellow;
+  border: 2px solid black;
+  border-radius: 5px;
+  color: black;
+  display: flex;
+  font-size: 18px;
+  justify-content: center;
+  max-width: 400px;
+  padding: 15px;
+  position: fixed;
+  top: 90%;
+  width: 80%;
+  z-index: 0;
+}
+
+.Products .btn-checkout span {
+  width: 50%;
+}
+
+.Products .btn-checkout:disabled {
+  background: grey;
+}
+
+@media only screen and ( max-width : 600px ) {
+
+  .CardProduct {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+  }
+}

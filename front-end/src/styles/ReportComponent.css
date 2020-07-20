@@ -1,0 +1,76 @@
+.ReportComponent {
+  animation: fadeIn 3s;
+  position: fixed;
+  top: 10px;
+  width: 50%;
+}
+
+.ReportComponent .stay {
+  background: red;
+}
+
+.DataProfile .ReportComponent {
+  align-self: center;
+  animation: fadeIn 3s;
+  position: fixed;
+  top: 60px;
+  width: 50%;
+}
+
+.DataProfile .ReportComponent .stay {
+  align-self: center;
+  animation: fadeIn 3s;
+  background: grey;
+  position: fixed;
+  top: 60px;
+  width: 50%;
+}
+
+.body-checkout .ReportComponent .stay {
+  align-self: center;
+  animation: fadeIn 3s;
+  background: green;
+  position: fixed;
+  top: 60px;
+  width: 50%;
+}
+
+.ReportComponent .text-report {
+  background: red;
+  border-radius: 10px;
+  color: black;
+  font-size: 12px;
+  min-width: 250px;
+  padding: 5px;
+  text-align: center;
+}
+
+.ReportComponent .redirect {
+  background: green;
+  color: white;
+}
+
+.ReportComponent .redirect-product {
+  background: green;
+  color: white;
+}
+
+@keyframes fadeIn {
+
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+
+}

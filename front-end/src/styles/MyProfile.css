@@ -1,0 +1,42 @@
+.MyProfile {
+  align-items: center;
+  background: rgb( 15 , 163 , 107 );
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.MyProfile .DataProfile {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+  margin-top: 20vh;
+  min-width: 280px;
+  padding: 20px 30px 60px;
+  width: 60%;
+}
+
+.DataProfile .input-profile {
+  border: 2px solid black;
+  font-size: 25px;
+  margin: 10px;
+  padding: 14px 7px;
+}
+
+.DataProfile .btn-save-name {
+  align-self: center;
+  background: greenyellow;
+  border: none;
+  border-radius: 20px;
+  font-size: 25px;
+  margin-top: 10vh;
+  max-width: 200px;
+  padding: 5px;
+  width: 100%;
+}
+
+.DataProfile .btn-save-name:hover {
+  background: greenyellow;
+  transform: scale( 1.2 );
+}

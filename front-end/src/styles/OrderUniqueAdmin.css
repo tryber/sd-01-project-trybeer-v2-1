@@ -1,0 +1,67 @@
+.OrderUniqueAdmin {
+  background: rgb( 15 , 163 , 107 );
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  padding-left: 300px;
+  padding-top: 10vh;
+}
+
+.OrderUniqueAdmin .div-order {
+  align-self: center;
+  background: white;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  padding: 10vh 3vw 0;
+  width: 70%;
+}
+
+.OrderUniqueAdmin .statusOrder {
+  display: flex;
+  flex-flow: wrap column;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.OrderUniqueAdmin .statusOrder .btn-delivery {
+  align-self: flex-end;
+  background: white;
+  border: solid 2px black;
+  border-radius: 10px;
+  font-size: 20px;
+  margin: 2vh 10vw 5vh;
+  max-width: 300px;
+  padding: 12px 5px;
+  width: 100%;
+}
+
+.OrderUniqueAdmin .statusOrder .btn-delivery:hover {
+  background: greenyellow;
+}
+
+.OrderUniqueAdmin .statusOrder .detail-products li {
+  border: 2px solid black;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  margin: 10px;
+  max-width: 700px;
+  min-width: 240px;
+  padding: 20px;
+  width: 80%;
+}
+
+.OrderUniqueAdmin .statusOrder .detail-products .total-value {
+  align-self: flex-end;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.OrderUniqueAdmin li .detail {
+  font-size: 6mm;
+  margin: 2px 4px;
+}

@@ -1,0 +1,15 @@
+.Orders .list-orders {
+  align-items: center;
+  background: rgb( 15 , 163 , 107 );
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-top: 120px;
+  min-height: 100vh;
+}
+
+.Orders .message-orders {
+  margin-top: 0;
+  padding-top: 200px;
+  text-align: center;
+}

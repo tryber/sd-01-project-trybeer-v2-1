@@ -29,7 +29,5 @@ module.exports = {
     })
   ),
 
-  down: async (queryInterface) => {
-    return queryInterface.dropTable('Users');
-  },
+  down: async (queryInterface) => queryInterface.dropTable('Users'),
 };

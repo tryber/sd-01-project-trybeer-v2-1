@@ -6,7 +6,7 @@ exports.createOrder = async (req, res) => {
   const order = await orderClient.createOrder(token, address, addressNumber, orders);
   if (!order) return res.status(400).json({ message: 'Order is failed' });
   await Promise.all(order);
-  res.status(200).json({ message: 'Order successfully placed' });
+  return res.status(200).json({ message: 'Order successfully placed' });
 };
 
 exports.getOrdersClient = async (req, res) => {
@@ -15,7 +15,7 @@ exports.getOrdersClient = async (req, res) => {
 
   if (order.length === 0) return res.status(200).json({ message: 'No purchases were made' });
 
-  res.status(200).json(order);
+  return res.status(200).json(order);
 };
 
 exports.getOneOrderClient = async (req, res) => {
@@ -25,5 +25,5 @@ exports.getOneOrderClient = async (req, res) => {
 
   if (!order) return res.status(404).json({ message: 'Order not exist' });
 
-  res.status(200).json(order);
+  return res.status(200).json(order);
 };

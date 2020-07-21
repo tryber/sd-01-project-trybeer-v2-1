@@ -64,8 +64,6 @@ module.exports = {
       {},
     )
   ),
-  
-  down: async (queryInterface) => {
-    return queryInterface.bulkDelete('Products', null, {});
-  },
+
+  down: async (queryInterface) => queryInterface.bulkDelete('Products', null, {}),
 };

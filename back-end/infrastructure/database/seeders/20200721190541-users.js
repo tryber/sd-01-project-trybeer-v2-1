@@ -12,11 +12,9 @@ module.exports = {
           role: 'admin',
         },
       ],
-      {}
+      {},
     )
   ),
 
-  down: async (queryInterface) => {
-    return queryInterface.bulkDelete('Users', null, {});
-  },
+  down: async (queryInterface) => queryInterface.bulkDelete('Users', null, {}),
 };

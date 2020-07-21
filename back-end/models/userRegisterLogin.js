@@ -18,8 +18,8 @@ const loginUser = async (emailUser, passwordUser) => {
 };
 
 const registerUserDB = async (name, email, password, role) => {
-  const ecryptedPassword = encrypt(password);
-  const query = `call createUser("${name}", "${email}", "${ecryptedPassword}", "${role}")`;
+  const DecryptedPassword = encrypt(password);
+  const query = `call createUser("${name}", "${email}", "${DecryptedPassword}", "${role}")`;
   const data = await connectionPromise(query);
   return data;
 };

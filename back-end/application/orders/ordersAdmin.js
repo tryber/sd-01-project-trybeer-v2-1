@@ -1,4 +1,4 @@
-const { getAllDataOrder, getOrderAdmin, putStatusOrder } = require('../models/ordersAdmin');
+const { getAllDataOrder, getOrderAdmin, putStatusOrder } = require('../../models/ordersAdmin');
 
 exports.ordersAdmin = async (_req, res) => {
   const orders = await getAllDataOrder();

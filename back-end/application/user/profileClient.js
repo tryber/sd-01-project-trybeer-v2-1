@@ -1,4 +1,4 @@
-const profileClient = require('../models/profileClient');
+const profileClient = require('../../models/profileClient');
 
 exports.profileClient = async (req, res) => {
   const { name } = req.body;

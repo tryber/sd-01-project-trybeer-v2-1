@@ -1,4 +1,4 @@
-const orderClient = require('../models/ordersClient');
+const orderClient = require('../../models/ordersClient');
 
 exports.createOrder = async (req, res) => {
   const token = req.headers.authorization;

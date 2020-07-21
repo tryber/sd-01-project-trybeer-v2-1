@@ -1,4 +1,4 @@
-const profileAdmin = require('../models/profileAdmin');
+const profileAdmin = require('../../models/profileAdmin');
 
 exports.adminProfile = async (req, res) => {
   const token = req.headers.authorization;

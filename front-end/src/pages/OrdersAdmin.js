@@ -39,7 +39,7 @@ function Orders() {
       });
     }
   }, [isFetching]);
-
+  console.log(ordersAdmin)
   return (
     <section className="Admin Orders-Admin">
       <NavBar />

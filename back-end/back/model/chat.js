@@ -1,4 +1,4 @@
-const connection = require('../services/connection');
+const connection = require('./service');
 const { ObjectID } = require('mongodb');
 
 class Chat {

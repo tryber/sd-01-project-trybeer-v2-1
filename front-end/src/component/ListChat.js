@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import Client from '../Client';
+import Client from './Client';
 import { TrybeerContext } from '../context';
 import io from 'socket.io-client';
 
@@ -11,14 +11,15 @@ function ListChat() {
   useEffect(() => {
     socket.emit('get all messages');
   }, [])
-  socket.on('Update chats', ({ chats }) => setChats({ chats }));
+  socket.on('Update chats', ({ chats }) => setChats(chats));
+  console.log(chat)
   return (
     <div className="ListChat">
       {
         !chat || chat.map((data) => <Client data={data} />)
       }
       {
-        chat || <h2>Nenhuma Conversa Iniciada!</h2>
+        !chat || chat.length !== 0 || <h2>Nenhuma Conversa Iniciada!</h2>
       }
     </div>
   )

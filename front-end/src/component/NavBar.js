@@ -29,6 +29,7 @@ function NavBar({ type }) {
       <div className="links">
         <Link to="/admin/orders" className="nav-link" data-testid="side-menu-item-orders">Pedidos</Link>
         <Link to="/admin/profile" className="nav-link" data-testid="side-menu-item-profile">Perfil</Link>
+        <Link to="/admin/chat" className="nav-link" data-testid="side-menu-item-profile">Conversas</Link>
       </div>
       <input className="checkout" type="button" data-testid="side-menu-item-logout" value="Sair" onClick={() => logout(setOut)} />
     </div>

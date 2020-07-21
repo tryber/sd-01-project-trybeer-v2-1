@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = {
-  up: async (queryInterface, _Sequelize) => {
-    return queryInterface.bulkInsert(
+  up: async (queryInterface) => (
+    queryInterface.bulkInsert(
       'Products',
       [
         {
@@ -61,10 +61,11 @@ module.exports = {
           image: 'http://localhost:3001/stella-artois-275ml.jpg',
         },
       ],
-      {}
-    );
-  },
-  down: async (queryInterface, _Sequelize) => {
+      {},
+    )
+  ),
+  
+  down: async (queryInterface) => {
     return queryInterface.bulkDelete('Products', null, {});
   },
 };

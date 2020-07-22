@@ -101,12 +101,12 @@ WHERE O.id_user = idUser;
 END$$
 DELIMITER ;
 
-DELIMITER $$
-CREATE PROCEDURE `getListProducts`()
-BEGIN
-SELECT * FROM products;
-END$$
-DELIMITER ;
+-- DELIMITER $$
+-- CREATE PROCEDURE `getListProducts`()
+-- BEGIN
+-- SELECT * FROM products;
+-- END$$
+-- DELIMITER ;
 
 DELIMITER $$
 CREATE PROCEDURE `getProductsInOrder`(IN idOrder INT, IN idUser INT)

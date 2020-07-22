@@ -5,6 +5,7 @@ const { adminProfile } = require('../application/user/profileAdmin');
 const { ordersAdmin, getOneOrderAdmin, putStatusOrderAdmin } = require('../application/order/ordersAdmin');
 const { createOrder, getOrdersClient, getOneOrderClient } = require('../application/order/ordersClient');
 
+
 module.exports = {
   register,
   login,

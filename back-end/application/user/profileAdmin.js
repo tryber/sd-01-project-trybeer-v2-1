@@ -1,8 +1,8 @@
-// const profileAdmin = require('../../models/profileAdmin');
+const UserRepository = require('../../infrastructure/user/UserRepository');
 
-// exports.adminProfile = async (req, res) => {
-//   const token = req.headers.authorization;
-//   const login = await profileAdmin.getProfileAdmin(token);
+exports.adminProfile = async (_req, res) => {
+  const profile = new UserRepository;
+  const dataProfile = await profile.getAll();
 
-//   return res.status(200).json(login);
-// };
+  return res.status(200).json(dataProfile);
+};

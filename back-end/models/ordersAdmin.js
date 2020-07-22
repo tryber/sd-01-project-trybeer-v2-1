@@ -1,4 +1,3 @@
-const { connectionPromise } = require('../services/connectionPromise');
 const { isNumber } = require('../services/utils');
 const { formatDate } = require('../services/utils');
 

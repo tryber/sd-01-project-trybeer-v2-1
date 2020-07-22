@@ -1,7 +1,8 @@
-const products = require('../../models/products');
+const ProductRepository = require('../../infrastructure/product/ProductRepository');
 
 exports.listProducts = async (_req, res) => {
-  const login = await products.getListProduct();
+  const product = new ProductRepository;
+  const listProduct = await product.getAll();
 
-  return res.status(200).json(login);
+  return res.status(200).json(listProduct);
 };

@@ -2,7 +2,7 @@ const connection = require('./service');
 const { ObjectID } = require('mongodb');
 
 class Chat {
-  static createOne = async ({ userClient, admin, message }) => {
+  async static createOne({ userClient, admin, message }) {
     try {
       const { idClient, email } = userClient;
       const { content } = message;
@@ -19,7 +19,7 @@ class Chat {
     }
   }
 
-  static addMessageToChat = async ({ userClient, admin, message }) => {
+  async static addMessageToChat({ userClient, admin, message }) {
     try {
       const { idClient } = userClient;
       const { content } = message;
@@ -46,7 +46,7 @@ class Chat {
     }
   }
 
-  static getAllChat = async () => {
+  async static getAllChat() {
     try {
       const db = await connection();
       const data = await db.collection('Chat').find().toArray();
@@ -61,7 +61,7 @@ class Chat {
     }
   }
 
-  static getOneChatByIdClient = async (idClient) => {
+  async static getOneChatByIdClient(idClient) {
     try {
       const db = await connection();
       const data = await db.collection('Chat').findOne({
@@ -75,7 +75,7 @@ class Chat {
     }
   }
 
-  static getOneChatById = async (id) => {
+  async static getOneChatById(id) {
     try {
       const db = await connection();
       const data = await db.collection('Chat').findOne({

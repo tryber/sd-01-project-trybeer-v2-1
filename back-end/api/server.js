@@ -7,9 +7,9 @@ const { listProducts, adminProfile, register, login } = require('./routes');
 // const { login, register, profileClient, listProducts, adminProfile } = require('./routes');
 // const { createOrder, getOrdersClient, getOneOrderClient, ordersAdmin } = require('./routes');
 // const { getOneOrderAdmin, putStatusOrderAdmin } = require('./routes');
-const { invalidLogin, databaseErrorHandling } = require('../rescue/rescues');
+const { invalidLogin, databaseErrorHandling } = require('../middlewares/rescues');
 const { updateNameMiddleware, userValidMiddleware } = require('../middlewares/index');
-// const { validRegisterMiddleware, validLoginMiddleware } = require('../middlewares/index');
+const { validRegisterMiddleware, validLoginMiddleware } = require('../middlewares/index');
 // const { validOrderMiddleware } = require('../middlewares/index');
 
 const app = express();
@@ -21,8 +21,8 @@ app.use(express.static(path.resolve(__dirname, '..', 'public')));
 
 const apiTrybeer = express.Router();
 
-apiTrybeer.post('/register', register);
-apiTrybeer.post('/login', invalidLogin(login));
+apiTrybeer.post('/register', validRegisterMiddleware, register);
+apiTrybeer.post('/login', validLoginMiddleware, invalidLogin(login));
 
 apiTrybeer.get('/admin/profile', databaseErrorHandling(adminProfile));
 // apiTrybeer.get('/admin/orders', userValidMiddleware, databaseErrorHandling(ordersAdmin));

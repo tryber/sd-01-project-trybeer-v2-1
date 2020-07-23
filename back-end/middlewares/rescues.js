@@ -2,7 +2,11 @@ exports.invalidLogin = fn => async (req, res, next) => {
   try {
     await fn(req, res, next);
   } catch (err) {
-    res.status(400).json({ message: 'Invalid Fields', error: err.message });
+    console.log(err.message);
+    if (err.message === 'SequelizeEmailNotFound' || err.message === 'SequelizePasswordIncorret')
+      return res.status(400).json({ message: 'Invalid Fields' });
+
+    return res.status(500).json({ error: err.name });
   }
 };
 

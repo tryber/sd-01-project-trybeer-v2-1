@@ -21,9 +21,8 @@ function ChatClient() {
   }, [])
   if (!user) return <Redirect to="/" />;
   const { id_user: idClient, email } = user;
-  const sendMessage = (value) => {
-    socket.emit('add message', { userClient: { idClient, email }, admin: false, message: { content: value } })
-  }
+  const sendMessage = (value) => socket.emit('add message', { userClient: { idClient, email }, admin: false, message: { content: value } })
+
   socket.on('update message', ({ messages }) => setChats(messages));
   const sortedList = (array) => array.messages.sort((a, b) => new Date(b.hour) - new Date(a.hour));
   return (
@@ -36,8 +35,7 @@ function ChatClient() {
             <div className="list-messages">
               {sortedList(chat).map((message) => <Message type={'client'} att={message} />)}
             </div>
-          </div>
-        }
+          </div>}
         <InputMessage sendMessage={sendMessage} />
       </div>
     </div>

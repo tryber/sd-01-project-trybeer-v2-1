@@ -29,7 +29,6 @@ const getOrders = async () => {
 function Orders() {
   const [ordersAdmin, setOrdersAdmin] = useState();
   const [isFetching, setIsFetching] = useState(false);
-
   useEffect(() => {
     if (!isFetching && !ordersAdmin) {
       setIsFetching(true);

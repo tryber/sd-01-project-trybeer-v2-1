@@ -2,15 +2,31 @@ const connection = require('./service');
 const { ObjectID } = require('mongodb');
 
 class Chat {
-  static addMessageToChat = async ({ userClient, admin, message }) => {
+  static createOne = async ({ userClient, admin, message }) => {
     try {
       const { idClient, email } = userClient;
       const { content } = message;
       const db = await connection();
+      return await db.collection('Chat').insertOne(
+        {
+          "idClient": Number(idClient),
+          "email": email,
+          "messages": [{ content: content, hour: new Date(), admin: admin }]
+        },
+      );
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static addMessageToChat = async ({ userClient, admin, message }) => {
+    try {
+      const { idClient } = userClient;
+      const { content } = message;
+      const db = await connection();
       return await db.collection('Chat').findOneAndUpdate(
         {
-          "idClient": idClient,
-          "email": email,
+          "idClient": Number(idClient),
         },
         {
           $push: {
@@ -49,8 +65,9 @@ class Chat {
     try {
       const db = await connection();
       const data = await db.collection('Chat').findOne({
-        "idClient": idClient,
+        "idClient": Number(idClient),
       });
+      console.log(data, 'data - line 72')
       if (!data) return [];
       return data;
     } catch (err) {

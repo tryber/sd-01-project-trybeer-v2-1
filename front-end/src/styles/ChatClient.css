@@ -1,0 +1,48 @@
+.Chat {
+  background: rgb( 15 , 163 , 107 );
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  min-height: 100vh;
+}
+
+
+.Chat .container {
+  display: flex;
+  flex-direction: column;
+}
+
+.Chat .sub-container {
+  height: 60%;
+  width: 70%;
+  padding: 20px;
+  max-width: 500px;
+}
+
+.Chat .sub-container .container-text {
+  height: 10%;
+  text-align: center;
+  border-bottom: 2px black solid;
+}
+
+.Chat .sub-container .list-messages {
+  border: 2px black solid;
+  display: flex;
+  flex-direction: column-reverse;
+  height: 80%;
+  min-width: 300px;
+  padding: 10px 0;
+  background: white;
+  overflow: auto;
+  box-sizing: border-box;
+}
+
+.ChatAdmin .margin-admin {
+  margin-left: 280px;
+}
+
+.ChatAdmin .sub-container-admin {
+  height: 80%;
+  width: 70%;
+  max-width: 800px;
+}

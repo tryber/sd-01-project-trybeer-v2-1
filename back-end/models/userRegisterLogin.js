@@ -14,7 +14,7 @@ const loginUser = async (emailUser, passwordUser) => {
   if (!verifyPassword(passwordUser, password)) return false;
 
   const token = createTokenJWT({ email, name, role, id_user });
-  return ({ name, email, token, role });
+  return ({ name, email, token, role, id_user });
 };
 
 const registerUserDB = async (name, email, password, role) => {

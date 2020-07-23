@@ -1,0 +1,19 @@
+.ItemMessage {
+  border-radius: 10px;
+  padding: 5px 4px 2px 10px;
+  width: 60%;
+  color: black;
+  margin: 10px 20px;
+  word-break: break-all;
+}
+
+.ItemMessage.admin {
+  align-self: flex-end;
+  background: rgb( 15 , 163 , 107 );
+}
+
+.ItemMessage.user {
+  align-self: flex-start;
+  background: white;
+  border: 0.5px solid black;
+}

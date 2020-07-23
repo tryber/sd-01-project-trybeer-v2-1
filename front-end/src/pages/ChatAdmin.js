@@ -3,6 +3,7 @@ import NavBar from '../component/NavBar';
 import io from 'socket.io-client';
 import InputMessage from '../component/InputMessage';
 import Message from '../component/Message';
+import '../styles/ChatClient.css';
 
 const socket = io('http://localhost:4555');
 socket.on('connect', () => console.log('LOGOU'));
@@ -14,21 +15,28 @@ function ChatAdmin({ match: { params: { id } } }) {
   }, [])
 
   const sendMessage = (value) => {
-    const { idClient, email } = chat;
-    socket.emit('add message', { userClient: { idClient, email }, admin: true, message: { content: value } })
+    const { email } = chat;
+    socket.emit('add message', { userClient: { idClient: id, email }, admin: true, message: { content: value } })
   }
 
-  socket.on('update message', ({ messages }) => setChats({ messages }));
+  socket.on('update message', ({ messages }) => {
+    setChats(messages);
+  });
+  const sortedList = (array) => array.messages.sort((a, b) => new Date(b.hour) - new Date(a.hour));
   return (
-    <div className="ChatAdmin">
+    <div className="Chat ChatAdmin">
       <NavBar />
-      {!chat ||
-        <div>
-          <h2>{`-----> ${chat.email}`}</h2>
-          {chat.messages.map(() => <Message />)}
-        </div>
-      }
-      <InputMessage sendMessage={sendMessage} />
+      <div className="container">
+        {!chat || chat.length === 0 ||
+          <div className="sub-container sub-container-admin margin-admin">
+            <h2 className="container-text">{`Chat com usuário: ${chat.email}`}</h2>
+            <div className="list-messages">
+              {sortedList(chat).map((message) => <Message type={'admin'} att={message} />)}
+            </div>
+          </div>
+        }
+        <InputMessage sendMessage={sendMessage} />
+      </div>
     </div>
   )
 }

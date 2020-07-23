@@ -33,11 +33,12 @@ function Orders({ location: { pathname } }) {
   }, [])
   if (!getUser()) return <Redirect to="/" />
   if (isError) return <h2>Algo deu de errado! Atualize a pagina ou volte para a pagina inicial</h2>
+  console.log(data)
   return (
     <div className="Orders">
       <Headers path={`${pathname}`} />
       {!isFetching || <h2>Loading</h2>}
-      {!data ||
+      {!data || data.message ||
         <div className="list-orders">
           {data.map((order, index) => <CardOrder key={`order-${order.id_order}`} index={index} att={order} />)}
         </div>

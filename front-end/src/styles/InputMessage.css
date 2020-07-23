@@ -13,13 +13,16 @@
   box-sizing: border-box;
   color: black;
   font-size: 18px;
+  max-width: 500px;
   margin: 10px 0 10px 30px;
   min-width: 300px;
-  max-width: 500px;
-  outline: 0;
   padding: 10px 50px 10px 20px;
   text-align: left;
   width: 60%;
+}
+
+.InputMessage .ipt:focus {
+  outline: 0;
 }
 
 .InputMessage .btn-message {

@@ -31,7 +31,7 @@ function ChatAdmin({ match: { params: { id } } }) {
           <div className="sub-container sub-container-admin margin-admin">
             <h2 className="container-text">{`Chat com usuário: ${chat.email}`}</h2>
             <div className="list-messages">
-              {sortedList(chat).map((message) => <Message type={'admin'} att={message} />)}
+              {sortedList(chat).map((message) => <Message type={'admin'} email={chat.email} att={message} />)}
             </div>
           </div>
         }

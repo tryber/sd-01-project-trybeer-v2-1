@@ -2,15 +2,18 @@ import React from 'react';
 import moment from 'moment';
 import '../styles/ItemMessage.css';
 
-const authorMessage = (type, admin) => {
-  if (type==="admin") return admin ? 'Você.' : 'Cliente.'
-  return admin ? 'Loja.' : 'Você.'
+const cssMessage = (type, admin) => {
+  if (type === "admin") return (admin ? 'ItemMessage admin' : 'ItemMessage user')
+  return (admin ? 'ItemMessage user' : 'ItemMessage admin')
 }
 
-function ItemMessage({ att: { hour, admin, content }, type }) {
+const authorMessage = (email, admin) => admin ? 'Loja' : email;
+
+
+function ItemMessage({ att: { hour, admin, content }, type, email }) {
   return (
-    <div className={(admin ? 'ItemMessage user' : 'ItemMessage admin')}>
-      <div>{`${moment(hour).format('MMMM Do YYYY, h:mm:ss a')} - ${authorMessage(type, admin)}`}</div>
+    <div className={cssMessage(type, admin)}>
+      <div>{`${moment(hour).format('MMMM Do YYYY, h:mm:ss a')} - ${authorMessage(email, admin)}`}</div>
       <p>{content}</p>
     </div>
   );

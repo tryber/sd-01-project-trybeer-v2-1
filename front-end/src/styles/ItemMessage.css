@@ -9,7 +9,7 @@
 
 .ItemMessage.admin {
   align-self: flex-end;
-  background: rgb( 15 , 163 , 107 );
+  background: lightblue;
 }
 
 .ItemMessage.user {

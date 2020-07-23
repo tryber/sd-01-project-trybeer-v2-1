@@ -5,7 +5,7 @@ const returnMessage = async (data) => {
     ? data.lastErrorObject.upserted
     : data.value._id;
   return Chat.getOneChatById(id);
-}
+};
 
 exports.addMessageToChat = async ({ userClient, admin, message }) => {
   try {
@@ -38,7 +38,7 @@ exports.getAllChat = async (id) => {
   } catch (err) {
     throw err;
   }
-}
+};
 
 exports.getOneChatByIdClient = async (idClient) => {
   try {

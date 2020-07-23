@@ -1,6 +1,6 @@
 const UserMapper = require('./UserMapper');
 const { User } = require('../database/models');
-const { encrypt } = require('../../services/crypto');
+const { encrypt, decrypt } = require('../../services/crypto');
 
 class UserRepository {
   async getAll() {
@@ -21,6 +21,22 @@ class UserRepository {
 
     const { dataValues } = await User.create(UserMapper.toDatabase({ name, password: encryptPassword, email, role }));
     return dataValues;
+  }
+
+  async _loginValidEmail(email, password) {
+    const findEmail = await User.findOne({ where: { email } });
+    if (!findEmail) throw new Error('SequelizeEmailNotFound');
+
+    const unencryptedPassword = decrypt(findEmail.password);
+
+    if (unencryptedPassword !== password) throw new Error('SequelizePasswordIncorret');
+
+    return findEmail;
+  }
+
+  async login({ email, password }) {
+    const user = await this._loginValidEmail(email, password);
+    return UserMapper.toEntity(user);
   }
 }
 

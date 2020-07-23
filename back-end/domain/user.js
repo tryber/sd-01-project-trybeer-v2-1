@@ -20,8 +20,9 @@ const User = attributes({
   },
 })(
   class User {
-    async dataUser() {
-      return this;
+    dataUser() {
+      const { id_user, name, email, password, role } = this;
+      return { id_user, name, email, password, role };
     }
   }
 );

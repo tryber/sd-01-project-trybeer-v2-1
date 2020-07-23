@@ -10,6 +10,8 @@ import '../styles/ChatClient.css';
 const socket = io('http://localhost:4555');
 socket.on('connect', () => console.log('LOGOU'));
 
+const sortedList = (array) => array.messages.sort((a, b) => new Date(b.hour) - new Date(a.hour));
+
 function ChatClient() {
   const [chat, setChats] = useState();
   const { user } = useContext(TrybeerContext);
@@ -22,9 +24,7 @@ function ChatClient() {
   if (!user) return <Redirect to="/" />;
   const { id_user: idClient, email } = user;
   const sendMessage = (value) => socket.emit('add message', { userClient: { idClient, email }, admin: false, message: { content: value } })
-
   socket.on('update message', ({ messages }) => setChats(messages));
-  const sortedList = (array) => array.messages.sort((a, b) => new Date(b.hour) - new Date(a.hour));
   return (
     <div className="Chat ChatClient">
       <Header path="/chat" />
@@ -32,13 +32,10 @@ function ChatClient() {
         {!chat || chat.length === 0 ||
           <div className="sub-container">
             <h2 className="container-text">{`Conversando com a loja:`}</h2>
-            <div className="list-messages">
-              {sortedList(chat).map((message) => <Message type={'client'} att={message} />)}
-            </div>
+            <div className="list-messages">{sortedList(chat).map((message) => <Message type={'client'} att={message} />)}</div>
           </div>}
         <InputMessage sendMessage={sendMessage} />
-      </div>
-    </div>
+      </div></div>
   )
 }
 

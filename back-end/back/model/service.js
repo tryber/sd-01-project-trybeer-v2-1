@@ -8,7 +8,7 @@ const connection = () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
-    .then((conn) => conn.db('chat-trybeer'))
+    .then(conn => conn.db('chat-trybeer'))
     .catch((err) => {
       console.error(err);
       process.exit(1);

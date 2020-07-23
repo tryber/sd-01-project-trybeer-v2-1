@@ -20,7 +20,7 @@ const User = attributes({
   },
 })(
   class User {
-    dataUser() {
+    async dataUser() {
       return this;
     }
   }

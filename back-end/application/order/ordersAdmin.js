@@ -1,9 +1,15 @@
-// const { getAllDataOrder, getOrderAdmin, putStatusOrder } = require('../../models/ordersAdmin');
+const OrderRepository = require('../../infrastructure/order/OrderRepository');
 
 // exports.ordersAdmin = async (_req, res) => {
 //   const orders = await getAllDataOrder();
 //   return res.status(200).json(orders);
 // };
+
+exports.ordersAdmin = async (_req, res) => {
+  const listProduct = await new OrderRepository().getAll();
+
+  return res.status(200).json(listProduct);
+};
 
 // exports.getOneOrderAdmin = async (req, res) => {
 //   const { id } = req.params;

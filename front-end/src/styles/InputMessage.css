@@ -19,10 +19,6 @@
   text-align: left;
 }
 
-.InputMessage .ipt:focus {
-  outline: 0;
-}
-
 .InputMessage .btn-message {
   background: white;
   border: none;

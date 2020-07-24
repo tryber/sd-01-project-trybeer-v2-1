@@ -53,14 +53,14 @@ VALUES
 ('tryber', 'U2FsdGVkX1+VEr77ZZsY1np0AxvGEoaeyPooPgY/sDI=', 'tryber@gmail.com', 'admin');
 
 
-DELIMITER $$
-CREATE PROCEDURE `createUser`(IN nameValue VARCHAR(80),IN emailValue VARCHAR(50),IN passwordValue VARCHAR(64),IN roleValue VARCHAR(20))
-BEGIN
-INSERT INTO users (name, email,password, role)
-VALUES
-(nameValue, emailValue, passwordValue, roleValue);
-END$$
-DELIMITER ;
+-- DELIMITER $$
+-- CREATE PROCEDURE `createUser`(IN nameValue VARCHAR(80),IN emailValue VARCHAR(50),IN passwordValue VARCHAR(64),IN roleValue VARCHAR(20))
+-- BEGIN
+-- INSERT INTO users (name, email,password, role)
+-- VALUES
+-- (nameValue, emailValue, passwordValue, roleValue);
+-- END$$
+-- DELIMITER ;
 
 DELIMITER $$
 CREATE PROCEDURE `createOrder`(IN idUser INT, IN address VARCHAR(255), IN addressNumber INT)
@@ -134,13 +134,13 @@ WHERE O.id_order = idOrder;
 END$$
 DELIMITER ;
 
-DELIMITER $$
-CREATE PROCEDURE `getUser`(IN emailUser VARCHAR(50))
-BEGIN
-SELECT * FROM users
-WHERE email = emailUser;
-END$$
-DELIMITER ;
+-- DELIMITER $$
+-- CREATE PROCEDURE `getUser`(IN emailUser VARCHAR(50))
+-- BEGIN
+-- SELECT * FROM users
+-- WHERE email = emailUser;
+-- END$$
+-- DELIMITER ;
 
 DELIMITER $$
 CREATE PROCEDURE `updateStatusOrder`(IN idOrder INT, IN valueStatus INT)

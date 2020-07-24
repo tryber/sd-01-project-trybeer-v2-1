@@ -10,6 +10,10 @@ const User = attributes({
     type: String,
     required: true,
   },
+  password: {
+    type: String,
+    required: true,
+  },
   role: {
     type: String,
     required: true,
@@ -17,7 +21,8 @@ const User = attributes({
 })(
   class User {
     dataUser() {
-      return this;
+      const { id_user, name, email, password, role } = this;
+      return { id_user, name, email, password, role };
     }
   }
 );

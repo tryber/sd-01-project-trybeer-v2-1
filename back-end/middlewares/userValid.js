@@ -1,4 +1,4 @@
-const { errorReadingJWT } = require('../rescue/rescues');
+const { errorReadingJWT } = require('./rescues');
 const tokenValid = require('../services/validJWT');
 
 const userValidMiddleware = errorReadingJWT((req, res, next) => {

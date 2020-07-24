@@ -7,8 +7,8 @@ const UserMapper = {
   },
 
   toDatabase(survivor) {
-    const { id_user, name, email, role } = survivor;
-    return { id_user, name, email, role };
+    const { name, password, email, role } = survivor;
+    return { name, password, email, role };
   },
 };
 

@@ -11,6 +11,7 @@ class Chat {
         {
           "idClient": Number(idClient),
           "email": email,
+          "lastUpdate": new Date(),
           "messages": [{ content: content, hour: new Date(), admin: admin }]
         },
       );
@@ -36,6 +37,9 @@ class Chat {
               admin: admin,
             }
           },
+          $set: {
+            lastUpdate: new Date(),
+          }
         },
         {
           upsert: true,

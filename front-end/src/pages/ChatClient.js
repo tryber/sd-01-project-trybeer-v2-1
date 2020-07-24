@@ -34,7 +34,7 @@ function ChatClient() {
             <h2 className="container-text">{`Conversando com a loja:`}</h2>
             <div className="list-messages">{sortedList(chat).map((message) => <Message email={email} type={'client'} att={message} />)}</div>
           </div>}
-        <InputMessage sendMessage={sendMessage} />
+        <InputMessage noMessage={!chat || chat.length === 0} sendMessage={sendMessage} />
       </div></div>
   )
 }

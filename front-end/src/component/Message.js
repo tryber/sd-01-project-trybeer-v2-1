@@ -13,7 +13,7 @@ const authorMessage = (email, admin) => admin ? 'Loja' : email;
 function ItemMessage({ att: { hour, admin, content }, type, email }) {
   return (
     <div className={cssMessage(type, admin)}>
-      <div>{`${moment(hour).format('MMMM Do YYYY, h:mm:ss a')} - ${authorMessage(email, admin)}`}</div>
+      <div>{`${moment(hour).format('MMMM D YYYY, h:mm:ss a')} - ${authorMessage(email, admin)}`}</div>
       <p>{content}</p>
     </div>
   );

@@ -13,12 +13,11 @@ function ListChat() {
     socket.emit('get all messages');
   }, [])
   socket.on('Update chats', ({ chats }) => {
-    console.log(chats, 'allchatsadmin');
     setChats(chats);
   });
   return (
     <div className="ListChat">
-      {!chat || chat.map((data) => <Client key={data.id} data={data} />)}
+      {!chat || chat.sort((a, b) => new Date(b.lastUpdate) - new Date(a.lastUpdate)).map((data) => <Client key={data.id} data={data} />)}
       {!chat || chat.length !== 0 || <h2 className="no-chat">Nenhuma Conversa Iniciada!</h2>}
     </div>
   )

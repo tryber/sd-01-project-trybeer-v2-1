@@ -65,17 +65,17 @@ VALUES
 DELIMITER $$
 CREATE PROCEDURE `createOrder`(IN idUser INT, IN address VARCHAR(255), IN addressNumber INT)
 BEGIN
-INSERT INTO orders (id_user, address, address_number)
+INSERT INTO Orders (id_user, address, address_number)
 VALUES
 (idUser, address, addressNumber);
-SELECT id_order FROM orders order by id_order desc limit 1;
+SELECT id_order FROM Orders order by id_order desc limit 1;
 END$$
 DELIMITER ;
 
 DELIMITER $$
 CREATE PROCEDURE `createProductOrder`(IN idOrder INT, IN idProducts INT, IN qtdValue INT)
 BEGIN
-INSERT INTO orders_products (id_order, id_product, quantity)
+INSERT INTO Orders_products (id_order, id_product, quantity)
 VALUES
 (idOrder, idProducts, qtdValue);
 END$$
@@ -86,8 +86,8 @@ CREATE PROCEDURE `getAllDataOrder`()
 BEGIN
 SELECT O.id_order, O.data, O.address, O.address_number, U.name AS client,
 O.status, priceOrderTotal(id_order) AS Total
-FROM orders AS O
-INNER JOIN users AS U
+FROM Orders AS O
+INNER JOIN Users AS U
 ON O.id_user = U.id_user;
 END$$
 DELIMITER ;
@@ -96,7 +96,7 @@ DELIMITER $$
 CREATE PROCEDURE `getAllDataOrderUser`(IN idUser INT)
 BEGIN
 SELECT O.id_order, O.data, priceOrderTotal(id_order) AS total
-FROM orders AS O
+FROM Orders AS O
 WHERE O.id_user = idUser;
 END$$
 DELIMITER ;
@@ -112,10 +112,10 @@ DELIMITER $$
 CREATE PROCEDURE `getProductsInOrder`(IN idOrder INT, IN idUser INT)
 BEGIN
 SELECT P.name_product, P.price, OP.quantity, P.price * OP.quantity AS total
-FROM products AS P
-INNER JOIN orders_products AS OP
+FROM Products AS P
+INNER JOIN Orders_products AS OP
 ON P.id_product = OP.id_product
-INNER JOIN orders AS O
+INNER JOIN Orders AS O
 ON O.id_order = OP.id_order
 WHERE O.id_order = idOrder AND O.id_user = idUser;
 END$$
@@ -125,10 +125,10 @@ DELIMITER $$
 CREATE PROCEDURE `getUniqueOrderAdmin`(IN idOrder INT)
 BEGIN
 SELECT P.name_product, P.price, OP.quantity
-FROM products AS P
-INNER JOIN orders_products AS OP
+FROM Products AS P
+INNER JOIN Orders_products AS OP
 ON P.id_product = OP.id_product
-INNER JOIN orders AS O
+INNER JOIN Orders AS O
 ON O.id_order = OP.id_order
 WHERE O.id_order = idOrder;
 END$$
@@ -145,7 +145,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `updateStatusOrder`(IN idOrder INT, IN valueStatus INT)
 BEGIN
-UPDATE orders O
+UPDATE Orders O
 	SET O.status = valueStatus
 WHERE O.id_order = idOrder;
 END$$
@@ -154,10 +154,10 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `updateUser`(IN idUser INT, IN name_Value VARCHAR(80))
 BEGIN
-UPDATE users s
+UPDATE Users s
 	SET s.name = name_Value
 WHERE s.id_user = idUser;
-SELECT * FROM users WHERE id_user = idUser;
+SELECT * FROM Users WHERE id_user = idUser;
 END$$
 DELIMITER ;
 
@@ -167,10 +167,10 @@ READS SQL DATA
 BEGIN
 DECLARE sum_total DOUBLE;
 SELECT SUM(P.price * OP.quantity) AS total
-FROM products AS P
-INNER JOIN orders_products AS OP
+FROM Products AS P
+INNER JOIN Orders_products AS OP
 ON P.id_product = OP.id_product
-INNER JOIN orders AS O
+INNER JOIN Orders AS O
 ON O.id_order = OP.id_order
 WHERE O.id_order = idOrder INTO sum_total;
 RETURN FORMAT(sum_total, 2);

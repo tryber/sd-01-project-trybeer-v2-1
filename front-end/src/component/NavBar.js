@@ -14,7 +14,7 @@ const linksCliente = (setOut) => (
       <Link to="/products" className="nav-link" data-testid="side-menu-item-products">Produtos</Link>
       <Link to="/orders" className="nav-link" data-testid="side-menu-item-my-orders">Meus pedidos</Link>
       <Link to="/profile" className="nav-link" data-testid="side-menu-item-my-profile">Meu Perfil</Link>
-      <Link to="/chat" className="nav-link" data-testid="side-menu-item-chat">Conversar com a loja</Link>
+      <Link to="/chat" className="nav-link" data-testid="side-menu-item-chat-with-store">Conversar com a loja</Link>
     </div>
     <input className="checkout" type="button" data-testid="side-menu-item-logout" value="Sair" onClick={() => logout(setOut)} />
   </div>
@@ -35,6 +35,6 @@ function NavBar({ type }) {
       <input className="checkout" type="button" data-testid="side-menu-item-logout" value="Sair" onClick={() => logout(setOut)} />
     </div>
   );
-}
+};
 
 export default NavBar;

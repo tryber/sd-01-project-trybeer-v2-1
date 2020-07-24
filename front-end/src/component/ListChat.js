@@ -18,7 +18,7 @@ function ListChat() {
   return (
     <div className="ListChat">
       {!chat || chat.sort((a, b) => new Date(b.lastUpdate) - new Date(a.lastUpdate)).map((data) => <Client key={data.id} data={data} />)}
-      {!chat || chat.length !== 0 || <h2 className="no-chat">Nenhuma Conversa Iniciada!</h2>}
+      {!chat || chat.length !== 0 || <h2 data-testid="text-for-no-conversation" className="no-chat">Nenhuma Conversa Iniciada!</h2>}
     </div>
   )
 }

@@ -6,7 +6,7 @@ import moment from 'moment';
 function Client({ data }) {
   return (
     <Link className="Client" to={`chat/${data.idClient}`}>
-        <h2>{`${data.email}  -  ${moment(data.lastUpdate).format('MMMM D YYYY, h:mm:ss a')}` }</h2>
+      <h2><span data-testid="profile-name">{data.email}</span> - <span data-testid="last-message">{moment(data.lastUpdate).format('MMMM D YYYY, h:mm:ss a')}</span></h2>
     </Link>
   )
 }

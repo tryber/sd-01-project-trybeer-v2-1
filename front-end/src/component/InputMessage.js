@@ -13,8 +13,8 @@ function InputMessage({ sendMessage, noMessage = false }) {
 
   return (
     <div className="InputMessage margin-admin">
-      <input type="text" value={value} placeholder={returnPlaceHolder(noMessage)} className="ipt" onChange={(e) => setValue(e.target.value)} />
-      <input type="button" value=">" className="btn-message" disabled={!value} onClick={() => send(value)} />
+      <input type="text" data-testid="chat-message" value={value} placeholder={returnPlaceHolder(noMessage)} className="ipt" onChange={(e) => setValue(e.target.value)} />
+      <input type="button" data-testid="send-message-btn" value=">" className="btn-message" disabled={!value} onClick={() => send(value)} />
     </div>
   );
 }

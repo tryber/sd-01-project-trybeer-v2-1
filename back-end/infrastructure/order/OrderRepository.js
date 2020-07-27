@@ -28,6 +28,20 @@ class OrderRepository {
 
     return { dataProducts, dataPurchase: result };
   }
+
+  async updateStatus(id, status) {
+    let newStatus = 0;
+
+    if (status === newStatus) newStatus = 1;
+    return await sequelize.query(`call updateStatusOrder("${id}", "${status}")`);
+  }
+
+  async putStatusOrder(id) {
+    const query = await sequelize.query(`SELECT status FROM Orders WHERE id_order = ${id}`);
+    const { status } = query[0][0];
+
+    return this.updateStatus(id, status);
+  }
 }
 
 module.exports = OrderRepository;

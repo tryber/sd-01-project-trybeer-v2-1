@@ -16,9 +16,9 @@ exports.getOneOrderAdmin = async (req, res) => {
   return res.status(200).json(order);
 };
 
-// exports.putStatusOrderAdmin = async (req, res) => {
-//   const { id } = req.params;
-//   await putStatusOrder(id);
+exports.putStatusOrderAdmin = async (req, res) => {
+  const { id } = req.params;
+  await new OrderRepository().putStatusOrder(id);
 
-//   return res.status(200).json({ message: 'Completed order' });
-// };
+  return res.status(200).json({ message: 'Completed order' });
+};

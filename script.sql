@@ -176,3 +176,12 @@ WHERE O.id_order = idOrder INTO sum_total;
 RETURN FORMAT(sum_total, 2);
 END$$
 DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `getOrderPriceTotal`(IN idOrder INT)
+BEGIN
+SELECT priceOrderTotal(idOrder) AS priceTotal, data, id_order, status
+FROM Orders
+WHERE id_order = idOrder;
+END$$
+DELIMITER ;

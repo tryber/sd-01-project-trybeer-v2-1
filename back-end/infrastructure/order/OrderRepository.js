@@ -17,11 +17,6 @@ class OrderRepository {
     return this.formatDate(orders);
   }
 
-  async getOrderPriceTotal(id) {
-    return sequelize.query(`SELECT priceOrderTotal("${id}") AS priceTotal, data, id_order, status FROM Orders
-    WHERE id_order = ${id}`);
-  }
-
   async getOrderAdmin(id) {
     if (!isNumber(id)) return false;
 
@@ -29,7 +24,7 @@ class OrderRepository {
 
     if (dataProducts.length === 0) return false;
 
-    const result = await this.getOrderPriceTotal(id);
+    const result = await sequelize.query(`call getOrderPriceTotal("${id}")`);
 
     return { dataProducts, dataPurchase: result };
   }

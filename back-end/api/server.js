@@ -26,7 +26,7 @@ apiTrybeer.post('/login', validLoginMiddleware, invalidLogin(login));
 
 apiTrybeer.get('/admin/profile', databaseErrorHandling(adminProfile));
 apiTrybeer.get('/admin/orders', userValidMiddleware, databaseErrorHandling(ordersAdmin));
-apiTrybeer.get('/admin/orders/:id', databaseErrorHandling(getOneOrderAdmin));
+apiTrybeer.get('/admin/orders/:id', userValidMiddleware, databaseErrorHandling(getOneOrderAdmin));
 // apiTrybeer.put('/admin/orders/:id', userValidMiddleware, databaseErrorHandling(putStatusOrderAdmin));
 
 apiTrybeer.get('/products', databaseErrorHandling(listProducts));

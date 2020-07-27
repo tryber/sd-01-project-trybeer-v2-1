@@ -2,7 +2,7 @@ const OrderMapper = require('./OrderMapper');
 const { Order } = require('../database/models');
 
 const sequelize = require('../../services/connectionProcedure');
-const { isNumber } = require('../../services/utils');
+const { isNumber, formatDate } = require('../../services/utils');
 
 class OrderRepository {
   async getAll() {

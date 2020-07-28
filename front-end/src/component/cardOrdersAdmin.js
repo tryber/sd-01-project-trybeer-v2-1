@@ -10,7 +10,7 @@ function CardOrders({ index, orders }) {
         <p data-testid={`${index}-order-number`}> Pedido {id_order}</p>
         <p data-testid={`${index}-order-address`}>Endereço: {address}, {address_number}</p>
         <p> Data de Compra: {data}</p>
-        <p> Status: {status === 0 ? 'Pendente' : 'Entregue'}</p>
+        <p> Status: {status}</p>
         <p data-testid={`${index}-order-total-value`}>Total: R${Total}</p>
       </section>
     </Link>

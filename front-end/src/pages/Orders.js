@@ -37,7 +37,7 @@ function Orders({ location: { pathname } }) {
     <div className="Orders">
       <Headers path={`${pathname}`} />
       {!isFetching || <h2>Loading</h2>}
-      {!data ||
+      {!data || data.message ||
         <div className="list-orders">
           {data.map((order, index) => <CardOrder key={`order-${order.id_order}`} index={index} att={order} />)}
         </div>

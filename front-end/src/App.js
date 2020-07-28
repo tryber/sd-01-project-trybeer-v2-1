@@ -11,7 +11,9 @@ import Orders from './pages/Orders';
 import OneOrder from './pages/OneOrder';
 import MyProfile from './pages/MyProfile';
 import Checkout from './pages/Checkout';
-
+import ChatAdmin from './pages/ChatAdmin';
+import AllChatsAdmin from './pages/AllChatsAdmin';
+import ChatClient from './pages/ChatClient';
 
 function App() {
   return (
@@ -28,6 +30,9 @@ function App() {
           <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/orders" component={Orders} />
           <Route exact path="/orders/:id" component={OneOrder} />
+          <Route exact path="/admin/chat/" component={AllChatsAdmin} />
+          <Route exact path="/admin/chat/:id" component={ChatAdmin} />
+          <Route exact path="/chat" component={ChatClient} />
         </Switch>
       </Router>
     </Provider>

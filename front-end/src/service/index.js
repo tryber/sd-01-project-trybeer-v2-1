@@ -5,6 +5,7 @@ exports.getTitle = (path, idExist) => {
     '/profile': 'Meu perfil',
     '/checkout': 'Finalizar',
     '/products': 'Trybeer',
+    '/chat': 'Conversa'
   };
   return titles[path];
 };

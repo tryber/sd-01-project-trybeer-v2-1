@@ -4,30 +4,30 @@ import NavBar from '../component/NavBar';
 import OrderUnique from '../component/OrderUnique';
 import '../styles/OrderUniqueAdmin.css';
 
-const fetchUpdate = async (lastCharacter, method, setData = '') => {
+
+const fetchUpdate = async (lastCharacter, method, newStatus, setData = '') => {
   const result = await fetch(`http://localhost:3001/admin/orders/${lastCharacter}`, {
     method, headers: {
       'Content-Type': 'application/json',
       authorization: getUser().token,
     },
+    body: { newStatus }
   })
   const resolve = await result.json();
-  if (setData) setData(resolve)
+  if (setData) setData(resolve);
   return resolve;
 }
 
-function OrderUniqueAdmin({ location: { pathname } }) {
+const updateStatus = (actualStatus) => actualStatus === 'Pendente' ? 'Preparando' : 'Entregue';
+
+function OrderUniqueAdmin({ match: { params: { id } } }) {
   const [update, setUpdate] = useState(0);
   const [data, setData] = useState();
-  const lastCharacter = pathname.replace('/admin/orders/', '');
 
   useEffect(() => {
-    if (data) fetchUpdate(lastCharacter, 'PUT')
-    fetchUpdate(lastCharacter, 'GET', setData)
+    if (data) fetchUpdate(id, 'PUT', updateStatus(data.dataPurchase.status))
+    fetchUpdate(id, 'GET', null, setData)
   }, [update])
-
-  let status = 1;
-  if (data) status = data.dataPurchase.status;
 
   return (
     <div className="Admin OrderUniqueAdmin">
@@ -39,11 +39,11 @@ function OrderUniqueAdmin({ location: { pathname } }) {
         <OrderUnique data={data} />
         <button
           data-testid="mark-as-delivered-btn"
-          hidden={status}
+          hidden={data.dataPurchase.status === 'Entregue'}
           className="btn-delivery"
           onClick={() => setUpdate(new Date())}
         >
-          Marcar como entregue
+          {(data.dataPurchase.status === 'Pendente') ? 'Preparar pedido' : 'Marcar como entregue'}
         </button>
       </section>}
     </div>

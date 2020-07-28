@@ -1,0 +1,63 @@
+.Chat {
+  background: rgb( 15 , 163 , 107 );
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  min-height: 100vh;
+}
+
+
+.Chat .container {
+  display: flex;
+  flex-direction: column;
+}
+
+.Chat .sub-container {
+  height: 60%;
+  max-width: 500px;
+  padding: 20px;
+  width: 70%;
+}
+
+.Chat .sub-container .container-text {
+  border-bottom: 2px black solid;
+  height: 10%;
+  text-align: center;
+}
+
+.Chat .sub-container .list-messages {
+  background: white;
+  border: 2px black solid;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column-reverse;
+  height: 80%;
+  min-width: 300px;
+  overflow: auto;
+  padding: 10px 0;
+}
+
+.ChatAdmin .margin-admin {
+  margin-left: 280px;
+}
+
+.ChatAdmin .sub-container-admin {
+  height: 80%;
+  max-width: 800px;
+  width: 70%;
+}
+
+.back-button {
+  align-self: center;
+  background: white;
+  border-radius: 40px;
+  color: black;
+  padding: 10px 15px;
+  text-decoration: none;
+  top: 50px;
+}
+
+.back-button:hover {
+  background: black;
+  color: white;
+}

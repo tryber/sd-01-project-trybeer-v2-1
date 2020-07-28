@@ -37,5 +37,4 @@ function NavBar({ type }) {
   );
 };
 
-
 export default NavBar;

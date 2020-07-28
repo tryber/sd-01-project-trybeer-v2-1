@@ -4,7 +4,6 @@ import NavBar from '../component/NavBar';
 import OrderUnique from '../component/OrderUnique';
 import '../styles/OrderUniqueAdmin.css';
 
-
 const fetchUpdate = async (lastCharacter, method, newStatus, setData = '') => {
   const result = await fetch(`http://localhost:3001/admin/orders/${lastCharacter}`, {
     method, headers: {

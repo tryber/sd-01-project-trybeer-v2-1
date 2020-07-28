@@ -33,6 +33,7 @@ function Orders({ location: { pathname } }) {
   }, [])
   if (!getUser()) return <Redirect to="/" />
   if (isError) return <h2>Algo deu de errado! Atualize a pagina ou volte para a pagina inicial</h2>
+  console.log(data)
   return (
     <div className="Orders">
       <Headers path={`${pathname}`} />

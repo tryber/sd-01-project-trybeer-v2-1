@@ -3,8 +3,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
 
-const { listProducts, adminProfile, register, login } = require('./routes');
-// const { login, register, profileClient, listProducts, adminProfile } = require('./routes');
+
+const { login, register, profileClient, listProducts, adminProfile } = require('./routes');
 const { createOrder, getOrdersClient, getOneOrderClient, ordersAdmin } = require('./routes');
 const { getOneOrderAdmin, putStatusOrderAdmin } = require('./routes');
 const { invalidLogin, databaseErrorHandling } = require('../middlewares/rescues');
@@ -33,7 +33,7 @@ apiTrybeer.get('/products', databaseErrorHandling(listProducts));
 
 apiTrybeer.get('/orders', userValidMiddleware, databaseErrorHandling(getOrdersClient));
 apiTrybeer.get('/orders/:id', userValidMiddleware, routeParamsValid, databaseErrorHandling(getOneOrderClient));
-// apiTrybeer.put('/profile', userValidMiddleware, updateNameMiddleware, databaseErrorHandling(profileClient));
+apiTrybeer.put('/profile', userValidMiddleware, updateNameMiddleware, databaseErrorHandling(profileClient));
 apiTrybeer.post('/checkout', userValidMiddleware, validOrderMiddleware, databaseErrorHandling(createOrder));
 
 app.use(apiTrybeer);

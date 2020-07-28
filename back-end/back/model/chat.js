@@ -12,7 +12,7 @@ exports.createOne = async ({ userClient, admin, message }) => {
         idClient: Number(idClient),
         email,
         lastUpdate: new Date(),
-        messages: [{ content, hour: new Date(), admin, }]
+        messages: [{ content, hour: new Date(), admin }]
       },
     );
   } catch (err) {

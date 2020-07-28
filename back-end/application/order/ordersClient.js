@@ -10,14 +10,14 @@ const OrderRepository = require('../../infrastructure/order/OrderRepository');
 //   return res.status(200).json({ message: 'Order successfully placed' });
 // };
 
-// exports.getOrdersClient = async (req, res) => {
-//   const token = req.headers.authorization;
-//   const order = await orderClient.getListOrderClient(token);
+exports.getOrdersClient = async (req, res) => {
+  const token = req.headers.authorization;
+  const order = await new OrderRepository().getListOrderClient(token);
 
-//   if (order.length === 0) return res.status(200).json({ message: 'No purchases were made' });
+  if (order.length === 0) return res.status(200).json({ message: 'No purchases were made' });
 
-//   return res.status(200).json(order);
-// };
+  return res.status(200).json(order);
+};
 
 // exports.getOneOrderClient = async (req, res) => {
 //   const token = req.headers.authorization;

@@ -3,6 +3,7 @@ const { Order } = require('../database/models');
 
 const sequelize = require('../../services/connectionProcedure');
 const { formatDate } = require('../../services/utils');
+const tokenValid = require('../../services/validJWT');
 
 class OrderRepository {
 
@@ -58,6 +59,13 @@ class OrderRepository {
     const updatePost = await this._updateStatus(statusOrder);
 
     return updatePost;
+  }
+
+  //Client
+  async getListOrderClient(token) {
+    const { id_user: idUser } = tokenValid(token);
+    const query = await sequelize.query(`call getAllDataOrderUser(${idUser})`);
+    return query.map(({ id_order, data, total }) => ({ id_order, total, date: formatDate(data) }));
   }
 }
 

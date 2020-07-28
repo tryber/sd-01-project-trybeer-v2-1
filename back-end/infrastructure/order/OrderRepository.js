@@ -7,7 +7,7 @@ const tokenValid = require('../../services/validJWT');
 
 class OrderRepository {
 
-  async formatDate(orders) {
+  async _formatDate(orders) {
     return orders.map(result => ({ ...result, data: formatDate(result.data) }))
       .sort((a, b) => a.status - b.status);
   }
@@ -15,7 +15,7 @@ class OrderRepository {
   async getAll() {
     const orders = await sequelize.query('call getAllDataOrder()');
 
-    return this.formatDate(orders);
+    return this._formatDate(orders);
   }
 
   async getOrderAdmin(id) {
@@ -24,24 +24,10 @@ class OrderRepository {
     if (dataProducts.length === 0) throw new Error('OrderIsNotFound');
 
     const result = await sequelize.query(`call getOrderPriceTotal("${id}")`);
-    const formatDataOrder = await this.formatDate(result);
+    const formatDataOrder = await this._formatDate(result);
 
     return { dataProducts, dataPurchase: formatDataOrder };
   }
-
-  // async updateStatus(id, status) {
-  //   let newStatus = 0;
-
-  //   if (status === newStatus) newStatus = 1;
-  //   return await sequelize.query(`call updateStatusOrder("${id}", "${status}")`);
-  // }
-
-  // async putStatusOrder(id) {
-  //   const query = await sequelize.query(`SELECT status FROM Orders WHERE id_order = ${id}`);
-  //   const { status } = query[0][0];
-
-  //   return this.updateStatus(id, status);
-  // }
 
   async _updateStatus(statusOrder) {
     const { id, status } = statusOrder;
@@ -71,13 +57,27 @@ class OrderRepository {
   async getOrderClient(token, id) {
     const { id_user: idUser } = tokenValid(token);
     const dataProducts = await sequelize.query(`call getProductsInOrder("${id}", "${idUser}")`);
-
     if (dataProducts.length === 0) return false;
+
     const result = await sequelize.query(`call getOrderPriceTotal("${id}")`);
-    const formatDataOrder = await this.formatDate(result);
+    const formatDataOrder = await this._formatDate(result);
 
     return { dataProducts, dataPurchase: formatDataOrder };
   };
+
+  async _createProductOrder(idOrder, orders) {
+    const resultOrder = await orders.map(({ id, qtd }) => {
+      return sequelize.query(`call createProductOrder("${idOrder.id_order}", "${id}", "${qtd}")`);
+    });
+
+    return resultOrder;
+  }
+
+  async createOrder(token, address, addressNumber, orders) {
+    const { id_user: idUser } = tokenValid(token);
+    const result = await sequelize.query(`call createOrder("${idUser}", "${address}", "${addressNumber}")`);
+    return this._createProductOrder(result[0], orders);
+  }
 }
 
 module.exports = OrderRepository;

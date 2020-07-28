@@ -10,9 +10,9 @@ exports.createOne = async ({ userClient, admin, message }) => {
     return await db.collection('Chat').insertOne(
       {
         idClient: Number(idClient),
-        email: email,
+        email,
         lastUpdate: new Date(),
-        messages: [{ content: content, hour: new Date(), admin: admin }]
+        messages: [{ content, hour: new Date(), admin }]
       },
     );
   } catch (err) {
@@ -32,9 +32,9 @@ exports.addMessageToChat = async ({ userClient, admin, message }) => {
       {
         $push: {
           messages: {
-            content: content,
+            content,
             hour: new Date(),
-            admin: admin,
+            admin,
           }
         },
         $set: {

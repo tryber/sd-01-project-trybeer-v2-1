@@ -3,7 +3,7 @@ const Chat = require('../model/chat');
 const returnMessage = async (data) => {
   const id = (!data.lastErrorObject.updatedExisting)
     ? data.lastErrorObject.upserted
-    : data.value._id;
+    : data.value['_id'];
   return Chat.getOneChatById(id);
 };
 

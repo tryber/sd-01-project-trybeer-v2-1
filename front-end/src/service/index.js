@@ -12,6 +12,7 @@ exports.getTitle = (path, idExist) => {
 
 exports.validateLocalUser = (data) => {
   if (!data) return false;
+  console.log(data, 'data');
   if (!data.name || !data.token || !data.email) return false;
   return data;
 }

@@ -23,8 +23,10 @@ async function handleSubmit(obj, setMessageRequest, setShouldRedirect) {
 }
 const redirectPage = (user, setUser) => {
   setUser(user);
-  const endpoint = (user.role === 'admin') ? "/admin/orders" : "/products";
-  return <Redirect to={endpoint} />
+  if (user.role === 'admin') {
+    return <Redirect to={"/admin/orders"} />
+  }
+  return <Redirect to={"/products"} />
 }
 
 function Login() {

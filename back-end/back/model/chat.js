@@ -9,10 +9,10 @@ exports.createOne = async ({ userClient, admin, message }) => {
     const db = await connection();
     return await db.collection('Chat').insertOne(
       {
-        "idClient": Number(idClient),
-        "email": email,
-        "lastUpdate": new Date(),
-        "messages": [{ content: content, hour: new Date(), admin: admin }]
+        'idClient': Number(idClient),
+        'email': email,
+        'lastUpdate': new Date(),
+        'messages': [{ content: content, hour: new Date(), admin: admin }]
       },
     );
   } catch (err) {
@@ -27,7 +27,7 @@ exports.addMessageToChat = async ({ userClient, admin, message }) => {
     const db = await connection();
     return await db.collection('Chat').findOneAndUpdate(
       {
-        "idClient": Number(idClient),
+        'idClient': Number(idClient),
       },
       {
         $push: {
@@ -69,7 +69,7 @@ exports.getOneChatByIdClient = async (idClient) => {
   try {
     const db = await connection();
     const data = await db.collection('Chat').findOne({
-      "idClient": Number(idClient),
+      'idClient': Number(idClient),
     });
     if (!data) return [];
     return data;

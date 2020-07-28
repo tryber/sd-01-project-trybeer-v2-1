@@ -3,7 +3,6 @@ const { Order } = require('../database/models');
 
 const sequelize = require('../../services/connectionProcedure');
 const { formatDate } = require('../../services/utils');
-const tokenValid = require('../../services/validJWT');
 
 class OrderRepository {
 
@@ -49,13 +48,13 @@ class OrderRepository {
 
   //Client
   async getListOrderClient(token) {
-    const { id_user: idUser } = tokenValid(token);
+    const { id_user: idUser } = token;
     const query = await sequelize.query(`call getAllDataOrderUser(${idUser})`);
     return query.map(({ id_order, data, total }) => ({ id_order, total, date: formatDate(data) }));
   }
 
   async getOrderClient(token, id) {
-    const { id_user: idUser } = tokenValid(token);
+    const { id_user: idUser } = token;
     const dataProducts = await sequelize.query(`call getProductsInOrder("${id}", "${idUser}")`);
     if (dataProducts.length === 0) return false;
 
@@ -74,7 +73,7 @@ class OrderRepository {
   }
 
   async createOrder(token, address, addressNumber, orders) {
-    const { id_user: idUser } = tokenValid(token);
+    const { id_user: idUser } = token;
     const result = await sequelize.query(`call createOrder("${idUser}", "${address}", "${addressNumber}")`);
     return this._createProductOrder(result[0], orders);
   }

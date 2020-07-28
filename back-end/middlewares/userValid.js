@@ -6,12 +6,14 @@ const userValidMiddleware = errorReadingJWT((req, res, next) => {
 
   if (!token) return res.status(401).json({ message: 'Access denied' });
 
-  const { role } = tokenValid(token);
+  const payload = tokenValid(token);
   const validRole = (req.originalUrl).substring(1, 6);
 
-  if (role === 'client' && validRole === 'admin') return res.status(401).json({ message: 'User Unauthorized' });
+  req.payload = payload;
 
-  if (role === 'admin' && validRole !== 'admin') return res.status(401).json({ message: 'User Unauthorized' });
+  if (payload.role === 'client' && validRole === 'admin') return res.status(401).json({ message: 'User Unauthorized' });
+
+  if (payload.role === 'admin' && validRole !== 'admin') return res.status(401).json({ message: 'User Unauthorized' });
 
   return next();
 });

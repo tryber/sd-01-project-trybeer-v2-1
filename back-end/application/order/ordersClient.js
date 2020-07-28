@@ -1,7 +1,7 @@
 const OrderRepository = require('../../infrastructure/order/OrderRepository');
 
 exports.createOrder = async (req, res) => {
-  const token = req.headers.authorization;
+  const token = req.payload;
   const { address, addressNumber, orders } = req.body;
   const order = await new OrderRepository().createOrder(token, address, addressNumber, orders);
   if (!order) return res.status(400).json({ message: 'Order is failed' });
@@ -10,7 +10,7 @@ exports.createOrder = async (req, res) => {
 };
 
 exports.getOrdersClient = async (req, res) => {
-  const token = req.headers.authorization;
+  const token = req.payload;
   const order = await new OrderRepository().getListOrderClient(token);
 
   if (order.length === 0) return res.status(200).json({ message: 'No purchases were made' });
@@ -19,7 +19,7 @@ exports.getOrdersClient = async (req, res) => {
 };
 
 exports.getOneOrderClient = async (req, res) => {
-  const token = req.headers.authorization;
+  const token = req.payload;
   const { id } = req.params;
   const order = await new OrderRepository().getOrderClient(token, id);
 

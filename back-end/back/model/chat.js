@@ -12,13 +12,13 @@ exports.createOne = async ({ userClient, admin, message }) => {
         idClient: Number(idClient),
         email,
         lastUpdate: new Date(),
-        messages: [{ content, hour: new Date(), admin }]
+        messages: [{ content, hour: new Date(), admin, }]
       },
     );
   } catch (err) {
     throw err;
   }
-}
+};
 
 exports.addMessageToChat = async ({ userClient, admin, message }) => {
   try {
@@ -48,7 +48,7 @@ exports.addMessageToChat = async ({ userClient, admin, message }) => {
   } catch (err) {
     throw err;
   }
-}
+};
 
 exports.getAllChat = async () => {
   try {
@@ -63,7 +63,7 @@ exports.getAllChat = async () => {
   } catch (err) {
     throw err;
   }
-}
+};
 
 exports.getOneChatByIdClient = async (idClient) => {
   try {
@@ -76,7 +76,7 @@ exports.getOneChatByIdClient = async (idClient) => {
   } catch (err) {
     throw err;
   }
-}
+};
 
 exports.getOneChatById = async (id) => {
   try {
@@ -88,5 +88,4 @@ exports.getOneChatById = async (id) => {
   } catch (err) {
     throw err;
   }
-}
-
+};

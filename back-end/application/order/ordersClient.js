@@ -19,12 +19,12 @@ exports.getOrdersClient = async (req, res) => {
   return res.status(200).json(order);
 };
 
-// exports.getOneOrderClient = async (req, res) => {
-//   const token = req.headers.authorization;
-//   const { id } = req.params;
-//   const order = await orderClient.getOrderClient(token, id);
+exports.getOneOrderClient = async (req, res) => {
+  const token = req.headers.authorization;
+  const { id } = req.params;
+  const order = await new OrderRepository().getOrderClient(token, id);
+  
+  if (!order) return res.status(404).json({ message: 'Order not exist' });
 
-//   if (!order) return res.status(404).json({ message: 'Order not exist' });
-
-//   return res.status(200).json(order);
-// };
+  return res.status(200).json(order);
+};

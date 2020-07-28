@@ -67,6 +67,17 @@ class OrderRepository {
     const query = await sequelize.query(`call getAllDataOrderUser(${idUser})`);
     return query.map(({ id_order, data, total }) => ({ id_order, total, date: formatDate(data) }));
   }
+
+  async getOrderClient(token, id) {
+    const { id_user: idUser } = tokenValid(token);
+    const dataProducts = await sequelize.query(`call getProductsInOrder("${id}", "${idUser}")`);
+
+    if (dataProducts.length === 0) return false;
+    const result = await sequelize.query(`call getOrderPriceTotal("${id}")`);
+    const formatDataOrder = await this.formatDate(result);
+
+    return { dataProducts, dataPurchase: formatDataOrder };
+  };
 }
 
 module.exports = OrderRepository;

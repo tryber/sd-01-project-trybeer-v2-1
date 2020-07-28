@@ -12,7 +12,7 @@ exports.createOne = async ({ userClient, admin, message }) => {
         idClient: Number(idClient),
         email,
         lastUpdate: new Date(),
-        messages: [{ content, hour: new Date(), admin }]
+        messages: [{ content, hour: new Date(), admin }],
       },
     );
   } catch (err) {
@@ -35,15 +35,15 @@ exports.addMessageToChat = async ({ userClient, admin, message }) => {
             content,
             hour: new Date(),
             admin,
-          }
+          },
         },
         $set: {
           lastUpdate: new Date(),
-        }
+        },
       },
       {
         upsert: true,
-      }
+      },
     );
   } catch (err) {
     throw err;
@@ -56,7 +56,7 @@ exports.getAllChat = async () => {
     const data = await db.collection('Chat').find().toArray();
     if (!data) {
       const notFoundError = new Error('NotFoundError');
-      notFoundError.details = `Nada encontrado`;
+      notFoundError.details = 'Nada encontrado';
       throw notFoundError;
     }
     return data;

@@ -1,0 +1,159 @@
+.Forms {
+  background: white;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 0 rgba( 0 , 0 , 0 , 0.75 );
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  min-width: 200px;
+  padding: 20px 20px 50px;
+  width: 60%;
+}
+
+.PageLogin , .PageRegister {
+  align-items: center;
+  background: rgb( 15 , 163 , 107 );
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+
+.PageLogin .noAccount , .PageRegister .noAccount {
+  background: rgb( 15 , 163 , 107 );
+  border: 3px solid white;
+  border-radius: 5px;
+  color: white;
+  font-size: 19px;
+  font-weight: 700;
+  padding: 8px 10px;
+  position: fixed;
+  text-decoration: none;
+  top: 22vh;
+  transition: all 0.2s;
+}
+
+.PageRegister .noAccount {
+  top: 16vh;
+}
+
+.PageLogin .noAccount:hover , .PageRegister .noAccount:hover {
+  background: white;
+  color: black;
+  text-decoration: none;
+}
+
+.Forms .lbl {
+  font-size: 20px;
+}
+
+.Forms .btn {
+  align-self: center;
+  background: black;
+  border: 2px solid black;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+  height: 40px;
+  margin-top: 20px;
+  transition: all 0.2s;
+  width: 150px;
+}
+
+.Forms .btn:hover {
+  background: white;
+  color: black;
+  text-decoration: none;
+}
+
+.Forms .ipt {
+  border: none;
+  border-bottom: 2px solid black;
+  font-size: 20px;
+  padding: 10px 10px 1px;
+}
+
+.Forms .invalid-fields , .forms-checkout .inputs .invalid-fields {
+  color: red;
+  font-size: 20px;
+}
+
+.Forms .check {
+  display: none;
+}
+
+.Forms .div-check {
+  display: flex;
+  margin-top: 10px;
+}
+
+.Forms .check-item {
+  align-self: center;
+  background: white;
+  border: 0.5px solid black;
+  color: white;
+  height: 15px;
+  margin-right: 4px;
+  transition: all 0.4s;
+  width: 15px;
+}
+
+.Forms .check:checked ~ .check-item {
+  background: rgb( 15 , 163 , 107 );
+  border: 0.5px solid white;
+  border-radius: 100%;
+  height: 20px;
+  width: 20px;
+}
+
+.forms-checkout {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.forms-checkout .inputs {
+  align-items: center;
+  background: white;
+  border: 2px solid black;
+  display: flex;
+  flex-flow: wrap row;
+  justify-content: center;
+  margin-bottom: 200px;
+  padding: 10px;
+  width: 100%;
+}
+
+.forms-checkout .inputs .btn {
+  align-self: center;
+  background: black;
+  border: 2px solid black;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+  height: 40px;
+  transition: all 0.2s;
+  width: 200px;
+}
+
+.forms-checkout .inputs .btn:disabled {
+  background: grey;
+  width: 180px;
+}
+
+
+.forms-checkout .inputs .input-checkout {
+  width: 80%;
+}
+
+.forms-checkout .inputs .ipt {
+  border: none;
+  border-bottom: 2px solid black;
+  font-size: 20px;
+  margin: 10px 0;
+  width: 80%;
+}

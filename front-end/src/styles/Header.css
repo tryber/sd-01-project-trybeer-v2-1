@@ -1,0 +1,24 @@
+.Header {
+  align-items: center;
+  background: black;
+  color: white;
+  display: flex;
+  font-size: 15px;
+  height: 60px;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+
+.Header .top-hamburguer {
+  background: transparent;
+  border: 1.5px white solid;
+  border-radius: 4px;
+  color: white;
+  font-size: 20px;
+  height: 30px;
+  left: 20px;
+  position: absolute;
+  width: 30px;
+}

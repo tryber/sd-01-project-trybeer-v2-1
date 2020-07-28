@@ -1,0 +1,11 @@
+.Admin .NavBar {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.Admin {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

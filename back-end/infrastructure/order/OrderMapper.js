@@ -2,13 +2,13 @@ const Order = require('../../domain/order');
 
 const OrderMapper = {
   toEntity({ dataValues }) {
-    const { id_user, name, email, role } = dataValues;
-    return new Order({ id_user, name, email, role });
+    const { id_order, data, address, address_number, status } = dataValues;
+    return new Order({ id_order, data, address, address_number, status });
   },
 
   toDatabase(survivor) {
-    const { name, password, email, role } = survivor;
-    return { name, password, email, role };
+    const { status } = survivor;
+    return { status };
   },
 };
 

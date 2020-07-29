@@ -1,32 +1,16 @@
 import React from 'react';
 import { getUser } from '../service';
-import useAxios from 'axios-hooks'
 import NavBar from '../component/NavBar';
 import Profile from '../component/ProfileAdmin';
 import '../styles/MyProfileAdmin.css';
+import { Redirect } from 'react-router-dom';
 
 function ProfileAdmin() {
-  const [{ data, loading, error }] = useAxios({
-    url: 'http://localhost:3001/admin/profile',
-    headers: {
-      'Content-Type': 'application/json',
-      authorization: getUser().token
-    }
-  });
-
-  if (loading) {
-    return <section className="container">
-      <NavBar />
-      <h1 className="loader"></h1>
-    </section>;
-  }
-
-  if (error) return <p>Error!</p>
-
+  if (!getUser()) return <Redirect to="/" />
   return (
     <div className="Admin admin-profile">
       <NavBar />
-      <Profile index={data} />
+      <Profile index={getUser()} />
     </div>
   )
 }

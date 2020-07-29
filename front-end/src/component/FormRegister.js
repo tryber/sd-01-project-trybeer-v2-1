@@ -38,11 +38,11 @@ function FormRegister({ getValues }) {
       <label className="lbl" htmlFor="password">Senha:</label><input id="password" className="ipt" type="password" data-testid="signup-password" onChange={e => setPassword(e.target.value)} />
       <div className="div-check">
         <input type="checkbox" id="checkbox" onClick={(e) => setRole(e.target.checked)} data-testid="signup-seller" className="ipt check" />
-        <span class="check-item"></span>
+        <span className="check-item"></span>
         <label className="lbl lbl-check" htmlFor="checkbox">Quero vender</label>
       </div>
       <input type="button" className="btn" value="Cadastrar" data-testid="signup-btn" onClick={() => submitValues({ name, email, password, setIsValid })} />
-      {isValid.status || isValid.invalid.length === 0 || <InvalidFields isValid={isValid}/>}
+      {isValid.status || isValid.invalid.length === 0 || <InvalidFields isValid={isValid} />}
     </div>
   );
 }

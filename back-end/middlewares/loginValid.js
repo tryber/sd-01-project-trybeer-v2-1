@@ -6,7 +6,7 @@ function validLoginMiddleware(req, res, next) {
   if (!isEmailValid(email) || !isPasswordValid(password))
     return res.status(400).json({ message: 'Invalid Fields' });
 
-  next();
+  return next();
 }
 
 module.exports = { validLoginMiddleware };

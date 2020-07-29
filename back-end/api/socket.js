@@ -3,7 +3,6 @@ const Chat = require('../back/controller/chat');
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
-
 io.on('connection', (socket) => {
   socket.on('add to room', async (idClient) => {
     const nameRoom = `Room ${idClient}`;

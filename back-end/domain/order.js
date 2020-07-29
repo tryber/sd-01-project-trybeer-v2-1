@@ -27,7 +27,7 @@ const Order = attributes({
     dataOrder() {
       return this;
     }
-  }
+  },
 );
 
 module.exports = Order;

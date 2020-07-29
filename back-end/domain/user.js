@@ -24,7 +24,7 @@ const User = attributes({
       const { id_user, name, email, password, role } = this;
       return { id_user, name, email, password, role };
     }
-  }
+  },
 );
 
 module.exports = User;

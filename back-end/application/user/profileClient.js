@@ -6,6 +6,6 @@ exports.profileClient = async (req, res) => {
 
   const { name, email, role, id_user } = dataProfile;
   const token = createJWT({ name, email, role, id_user });
-  
+
   return res.status(200).json({ name, email, role, token });
 };

@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   up: async (queryInterface, Sequelize) => (
     queryInterface.createTable('Orders', {
@@ -33,10 +31,10 @@ module.exports = {
       status: {
         type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: "Pendente"
+        defaultValue: 'Pendente',
       },
     })
   ),
 
-  down: async (queryInterface) => queryInterface.dropTable('Orders'),
+  down: async queryInterface => queryInterface.dropTable('Orders'),
 };

@@ -3,7 +3,7 @@ const { User } = require('../database/models');
 const { encrypt, decrypt } = require('../../services/crypto');
 
 class UserRepository {
-  async getAll() {
+  static async getAll() {
     const profile = await User.findAll();
     return profile.map(UserMapper.toEntity);
   }
@@ -19,11 +19,13 @@ class UserRepository {
       throw error;
     }
 
-    const { dataValues } = await User.create(UserMapper.toDatabase({ name, password: encryptPassword, email, role }));
+    const { dataValues } = await User.create(UserMapper.toDatabase({
+      name, password: encryptPassword, email, role
+    }));
     return dataValues;
   }
 
-  async _updateProfileClient(name, payload) {
+  static async _updateProfileClient(name, payload) {
     const { id_user, email } = payload;
 
     const updateStatus = await User.update(
@@ -42,13 +44,13 @@ class UserRepository {
     return updateUser;
   }
 
-  async _loginValidEmail(email, password) {
+  static async _loginValidEmail(email, password) {
     const findEmail = await User.findOne({ where: { email } });
-    if (!findEmail) throw new Error('SequelizeEmailNotFound');
+    if (!findEmail) throw new Error('EmailOrPassordInvalid');
 
     const unencryptedPassword = decrypt(findEmail.password);
 
-    if (unencryptedPassword !== password) throw new Error('SequelizePasswordIncorret');
+    if (unencryptedPassword !== password) throw new Error('EmailOrPassordInvalid');
 
     return findEmail;
   }

@@ -6,7 +6,7 @@ const { formatDate } = require('../../services/utils');
 
 class OrderRepository {
 
-  async _formatDate(orders) {
+  static async _formatDate(orders) {
     return orders.map(result => ({ ...result, data: formatDate(result.data) }))
       .sort((a, b) => a.status - b.status);
   }
@@ -28,7 +28,7 @@ class OrderRepository {
     return { dataProducts, dataPurchase: formatDataOrder };
   }
 
-  async _updateStatus(statusOrder) {
+  static async _updateStatus(statusOrder) {
     const { id, status } = statusOrder;
 
     const updateStatus = await Order.update(
@@ -46,8 +46,8 @@ class OrderRepository {
     return updatePost;
   }
 
-  //Client
-  async getListOrderClient(token) {
+  // Client
+  static async getListOrderClient(token) {
     const { id_user: idUser } = token;
     const query = await sequelize.query(`call getAllDataOrderUser(${idUser})`);
     return query.map(({ id_order, data, total }) => ({ id_order, total, date: formatDate(data) }));
@@ -62,12 +62,12 @@ class OrderRepository {
     const formatDataOrder = await this._formatDate(result);
 
     return { dataProducts, dataPurchase: formatDataOrder };
-  };
+  }
 
-  async _createProductOrder(idOrder, orders) {
-    const resultOrder = await orders.map(({ id, qtd }) => {
-      return sequelize.query(`call createProductOrder("${idOrder.id_order}", "${id}", "${qtd}")`);
-    });
+  static async _createProductOrder(idOrder, orders) {
+    const resultOrder = await orders.map(({ id, qtd }) => (
+      sequelize.query(`call createProductOrder("${idOrder.id_order}", "${id}", "${qtd}")`)
+    ));
 
     return resultOrder;
   }

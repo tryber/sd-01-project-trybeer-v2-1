@@ -1,6 +1,6 @@
 const OrderMapper = require('./OrderMapper');
 const { Order } = require('../database/models');
-
+const service = require('../../domain/serviceOrder');
 const sequelize = require('../../services/connectionProcedure');
 const { formatDate } = require('../../services/utils');
 
@@ -8,7 +8,7 @@ class OrderRepository {
 
   async _formatDate(orders) {
     return orders.map(result => ({ ...result, data: formatDate(result.data) }))
-      .sort((a, b) => a.status - b.status);
+      .sort((a, b) => service.orderStatus(a.status) - service.orderStatus(b.status));
   }
 
   async getAll() {
@@ -25,12 +25,11 @@ class OrderRepository {
     const result = await sequelize.query(`call getOrderPriceTotal("${id}")`);
     const formatDataOrder = await this._formatDate(result);
 
-    return { dataProducts, dataPurchase: formatDataOrder };
+    return { dataProducts, dataPurchase: formatDataOrder[0] };
   }
 
   async _updateStatus(statusOrder) {
     const { id, status } = statusOrder;
-
     const updateStatus = await Order.update(
       OrderMapper.toDatabase({ status }),
       { where: { id_order: id } },
@@ -40,10 +39,11 @@ class OrderRepository {
     return updateStatus;
   }
 
-  async putStatusOrder(statusOrder) {
-    const updatePost = await this._updateStatus(statusOrder);
-
-    return updatePost;
+  async putStatusOrder(id) {
+    const { dataPurchase: { status } } = await this.getOrderAdmin(id);
+    await this._updateStatus({ id, status: service.updateValue(status) });
+    const newData = await this.getOrderAdmin(id);
+    return newData;
   }
 
   // Client
@@ -61,7 +61,7 @@ class OrderRepository {
     const result = await sequelize.query(`call getOrderPriceTotal("${id}")`);
     const formatDataOrder = await this._formatDate(result);
 
-    return { dataProducts, dataPurchase: formatDataOrder };
+    return { dataProducts, dataPurchase: formatDataOrder[0] };
   }
 
   async _createProductOrder(idOrder, orders) {

@@ -2,7 +2,6 @@ exports.invalidLogin = fn => async (req, res, next) => {
   try {
     await fn(req, res, next);
   } catch (err) {
-    console.log(err.message);
     if (err.message === 'EmailOrPassordInvalid')
       return res.status(400).json({ message: 'Invalid Fields' });
 
@@ -14,6 +13,7 @@ exports.databaseErrorHandling = fn => async (req, res, next) => {
   try {
     await fn(req, res, next);
   } catch (err) {
+    console.error(err)
     res.status(500).json({ message: err.name, error: err.message });
   }
 };

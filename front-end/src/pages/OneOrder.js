@@ -19,7 +19,7 @@ function OneOrder({ match }) {
       <Headers id={id} />
       {!loading || <h2>Loading</h2>}
       {loading || <div className="div-order">
-        <h2 data-testid="order-number" >Pedido número: {data.dataPurchase.id_order}</h2><h3 data-testid="order-date">Data: {data.dataPurchase.date}</h3><h3 data-testid="order-status" >{data.dataPurchase.status}</h3>
+        <h2 data-testid="order-number" >Pedido número: {data.dataPurchase.id_order}</h2><h3 data-testid="order-date">Data: {data.dataPurchase.data}</h3><h3 data-testid="order-status" >{data.dataPurchase.status}</h3>
         <div className="list-products">
           {data.dataProducts.map((item, index) => (
             <div className="detail-products">

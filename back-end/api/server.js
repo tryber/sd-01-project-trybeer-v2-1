@@ -24,7 +24,7 @@ const apiTrybeer = express.Router();
 apiTrybeer.post('/register', validRegisterMiddleware, emailInvalid(register));
 apiTrybeer.post('/login', validLoginMiddleware, invalidLogin(login));
 
-apiTrybeer.get('/admin/profile', databaseErrorHandling(adminProfile));
+apiTrybeer.get('/admin/profile', userValidMiddleware, databaseErrorHandling(adminProfile));
 apiTrybeer.get('/admin/orders', userValidMiddleware, databaseErrorHandling(ordersAdmin));
 apiTrybeer.get('/admin/orders/:id', userValidMiddleware, routeParamsValid, databaseErrorHandling(getOneOrderAdmin));
 apiTrybeer.put('/admin/orders/:id', userValidMiddleware, routeParamsValid, databaseErrorHandling(putStatusOrderAdmin));

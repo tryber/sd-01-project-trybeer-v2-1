@@ -1,48 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import { getUser } from '../service';
+import { requestWithToken } from '../service/serviceFetch';
 import NavBar from '../component/NavBar';
 import OrderUnique from '../component/OrderUnique';
 import '../styles/OrderUniqueAdmin.css';
+import { Redirect } from 'react-router-dom';
 
-const fetchUpdate = async (lastCharacter, method, newStatus, setData = '') => {
-  const result = await fetch(`http://localhost:3001/admin/orders/${lastCharacter}`, {
-    method, headers: {
+function HeaderAuthorization(method) {
+  const token = getUser().token;
+  return {
+    method,
+    headers: {
       'Content-Type': 'application/json',
-      authorization: getUser().token,
+      Authorization: token
     },
-    body: { newStatus }
-  })
-  const resolve = await result.json();
-  if (setData) setData(resolve);
-  return resolve;
+  }
 }
 
-const updateStatus = (actualStatus) => actualStatus === 'Pendente' ? 'Preparando' : 'Entregue';
+const getOrder = async (id, method = 'GET') => {
+  const url = `http://localhost:3001/admin/orders/${id}`;
+
+  const response = await fetch(url, HeaderAuthorization(method));
+  const data = await response.json();
+  return data;
+}
+
+const updateStatus = async (id, setOrder) => {
+  getOrder(id, 'PUT').then(result => {
+    setOrder(result.data);
+  });
+}
 
 function OrderUniqueAdmin({ match: { params: { id } } }) {
-  const [update, setUpdate] = useState(0);
-  const [data, setData] = useState();
-
+  const [order, setOrder] = useState();
+  const [isFetching, setIsFetching] = useState(false);
   useEffect(() => {
-    if (data) fetchUpdate(id, 'PUT', updateStatus(data.dataPurchase.status))
-    fetchUpdate(id, 'GET', null, setData)
-  }, [update])
-
+    if ((!isFetching && !order)) {
+      setIsFetching(true);
+      getOrder(id).then(result => {
+        setOrder(result);
+        setIsFetching(false);
+      });
+    }
+  }, [isFetching]);
   return (
     <div className="Admin OrderUniqueAdmin">
       <NavBar />
-      {!data && <section className="container">
+      {isFetching && <section className="container">
         <h1 className="loader"></h1>
       </section>}
-      {data && <section className="statusOrder">
-        <OrderUnique data={data} />
+      {order && <section className="statusOrder">
+        <OrderUnique data={order} />
         <button
           data-testid="mark-as-delivered-btn"
-          hidden={data.dataPurchase.status === 'Entregue'}
+          hidden={order.dataPurchase.status === 'Entregue'}
           className="btn-delivery"
-          onClick={() => setUpdate(new Date())}
+          disabled={isFetching}
+          onClick={() => updateStatus(id, setOrder)}
         >
-          {(data.dataPurchase.status === 'Pendente') ? 'Preparar pedido' : 'Marcar como entregue'}
+          {(order.dataPurchase.status === 'Pendente') ? 'Preparar pedido' : 'Marcar como entregue'}
         </button>
       </section>}
     </div>

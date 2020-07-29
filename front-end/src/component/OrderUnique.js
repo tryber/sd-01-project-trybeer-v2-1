@@ -1,10 +1,5 @@
 import React from 'react';
 
-const statusOrder = (status) => {
-  if (status === 0) return 'Pendente';
-  return 'Entregue';
-}
-
 const orderProducts = (dataProducts) => (
   <ul>
     {dataProducts.map(({ name_product, price, quantity }, index) =>
@@ -25,15 +20,13 @@ const orderProducts = (dataProducts) => (
 
 const OrderUnique = (props) => {
   if (props.data.message) return 'Pedido não registrado';
-
   const { dataProducts, dataPurchase } = props.data;
   const { id_order: idOrder, priceTotal, status } = dataPurchase;
-
   return (
     <div className="div-order detail-products">
       <h1>
         <span data-testid="order-number">Pedido {idOrder}</span>
-        <span data-testid="order-status"> - {statusOrder(status)}</span>
+        <span data-testid="order-status"> - {status}</span>
       </h1>
       {orderProducts(dataProducts)}
       <section data-testid="order-total-value" className="total-value">

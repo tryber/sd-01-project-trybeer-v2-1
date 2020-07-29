@@ -26,7 +26,6 @@ async function handleSubmit(obj, setMessageRequest, orders, setCarBuyer, setFini
       authorization: getUser().token,
     }
   });
-  console.log(data.message)
   setMessageRequest((data.message));
   if (data.message === "Order successfully placed") {
     clearCar();

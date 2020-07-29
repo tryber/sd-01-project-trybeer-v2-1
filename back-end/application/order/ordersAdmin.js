@@ -1,4 +1,5 @@
 const OrderRepository = require('../../infrastructure/order/OrderRepository');
+const domain = require('../../domain/order');
 
 exports.ordersAdmin = async (_req, res) => {
   const listProduct = await new OrderRepository().getAll();
@@ -17,9 +18,8 @@ exports.getOneOrderAdmin = async (req, res) => {
 
 exports.putStatusOrderAdmin = async (req, res) => {
   const { id } = req.params;
-  const { status } = req.body;
 
-  await new OrderRepository().putStatusOrder({ id, status });
+  const order = await new OrderRepository().putStatusOrder(id);
 
-  return res.status(200).json({ message: 'Completed order' });
+  return res.status(200).json({ message: 'Completed order', data: order });
 };

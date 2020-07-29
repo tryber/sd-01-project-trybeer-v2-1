@@ -22,6 +22,7 @@ async function handleSubmit(obj, setMessageRequest, setShouldRedirect) {
   setShouldRedirect(true);
 }
 const redirectPage = (user, setUser) => {
+  console.log(user,'user')
   setUser(user);
   if (user.role === 'admin') {
     return <Redirect to={"/admin/orders"} />

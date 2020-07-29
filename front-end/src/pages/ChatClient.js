@@ -25,6 +25,7 @@ function ChatClient() {
   const { id_user: idClient, email } = user;
   const sendMessage = (value) => socket.emit('add message', { userClient: { idClient, email }, admin: false, message: { content: value } })
   socket.on('update message', ({ messages }) => setChats(messages));
+  console.log(chat)
   return (
     <div className="Chat ChatClient">
       <Header path="/chat" />

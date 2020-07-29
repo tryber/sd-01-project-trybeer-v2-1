@@ -48,9 +48,9 @@ CREATE DATABASE IF NOT EXISTS trybeer;
 -- ('Skol Beats Senses 269ml', 3.57, 'http://localhost:3001/skol-beats-senses-269ml.jpg'),
 -- ('Stella Artois 275ml', 3.49, 'http://localhost:3001/stella-artois-275ml.jpg');
 
-INSERT INTO users (name, password, email, role)
-VALUES
-('tryber', 'U2FsdGVkX1+VEr77ZZsY1np0AxvGEoaeyPooPgY/sDI=', 'tryber@gmail.com', 'admin');
+-- INSERT INTO users (name, password, email, role)
+-- VALUES
+-- ('tryber', 'U2FsdGVkX1+VEr77ZZsY1np0AxvGEoaeyPooPgY/sDI=', 'tryber@gmail.com', 'admin');
 
 
 -- DELIMITER $$
@@ -142,24 +142,24 @@ DELIMITER ;
 -- END$$
 -- DELIMITER ;
 
-DELIMITER $$
-CREATE PROCEDURE `updateStatusOrder`(IN idOrder INT, IN valueStatus INT)
-BEGIN
-UPDATE Orders O
-	SET O.status = valueStatus
-WHERE O.id_order = idOrder;
-END$$
-DELIMITER ;
+-- DELIMITER $$
+-- CREATE PROCEDURE `updateStatusOrder`(IN idOrder INT, IN valueStatus INT)
+-- BEGIN
+-- UPDATE Orders O
+-- 	SET O.status = valueStatus
+-- WHERE O.id_order = idOrder;
+-- END$$
+-- DELIMITER ;
 
-DELIMITER $$
-CREATE PROCEDURE `updateUser`(IN idUser INT, IN name_Value VARCHAR(80))
-BEGIN
-UPDATE Users s
-	SET s.name = name_Value
-WHERE s.id_user = idUser;
-SELECT * FROM Users WHERE id_user = idUser;
-END$$
-DELIMITER ;
+-- DELIMITER $$
+-- CREATE PROCEDURE `updateUser`(IN idUser INT, IN name_Value VARCHAR(80))
+-- BEGIN
+-- UPDATE Users s
+-- 	SET s.name = name_Value
+-- WHERE s.id_user = idUser;
+-- SELECT * FROM Users WHERE id_user = idUser;
+-- END$$
+-- DELIMITER ;
 
 DELIMITER $$
 CREATE FUNCTION `priceOrderTotal`(idOrder INT) RETURNS double

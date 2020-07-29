@@ -23,6 +23,25 @@ class UserRepository {
     return dataValues;
   }
 
+  async _updateProfileClient(name, payload) {
+    const { id_user, email } = payload;
+
+    const updateStatus = await User.update(
+      UserMapper.toDatabase({ name }),
+      { where: { id_user, email } },
+    );
+
+    if (updateStatus[0] === 0) throw new Error('UserUpdateIsNotValid');
+
+    const newUserData = await User.findOne({ where: { id_user, email } });
+    return newUserData;
+  }
+
+  async updateProfileClient({ name }, payload) {
+    const updateUser = await this._updateProfileClient(name, payload);
+    return updateUser;
+  }
+
   async _loginValidEmail(email, password) {
     const findEmail = await User.findOne({ where: { email } });
     if (!findEmail) throw new Error('SequelizeEmailNotFound');

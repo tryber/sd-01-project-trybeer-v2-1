@@ -8,24 +8,6 @@ class UserRepository {
     return profile.map(UserMapper.toEntity);
   }
 
-  async _getById(id_user) {
-    try {
-      return await User.findByPk(id_user, { rejectOnEmpty: true });
-    } catch (error) {
-      if (error.name === 'SequelizeEmptyResultError') {
-        const notFoundError = new Error('NotFoundError');
-        notFoundError.details = `User com identificador ${id_user} não foi encontrado.`;
-        throw notFoundError;
-      }
-      throw error;
-    }
-  }
-
-  async getById(id) {
-    const user = await this._getById(id);
-    return UserMapper.toEntity(user);
-  }
-
   async registerUser(users) {
     const { valid, errors } = users.validate();
     const { name, password, email, role } = users;

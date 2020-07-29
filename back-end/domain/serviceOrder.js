@@ -1,6 +1,6 @@
-exports.updateValue = (actualStatus) => actualStatus === 'Pendente' ? 'Preparando' : 'Entregue';
+exports.updateValue = actualStatus => actualStatus === 'Pendente' ? 'Preparando' : 'Entregue';
 
-exports.orderStatus = (value) => (
+exports.orderStatus = value => (
   {
     Pendente: 1,
     Preparando: 2,

@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getUser } from '../service';
-import { requestWithToken } from '../service/serviceFetch';
 import NavBar from '../component/NavBar';
 import OrderUnique from '../component/OrderUnique';
 import '../styles/OrderUniqueAdmin.css';
-import { Redirect } from 'react-router-dom';
 
 function HeaderAuthorization(method) {
   const token = getUser().token;

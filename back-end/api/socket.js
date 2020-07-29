@@ -5,7 +5,6 @@ const io = require('socket.io')(server);
 
 io.on('connection', (socket) => {
   socket.on('add to room', async (idClient) => {
-    console.log('entrou na sala idClient', idClient)
     const nameRoom = `Room ${idClient}`;
     socket.join(`${nameRoom}`, async () => {
       const history = await Chat.getOneChatByIdClient(idClient);
@@ -17,8 +16,6 @@ io.on('connection', (socket) => {
 
   socket.on('add message', async ({ userClient, admin, message }) => {
     const { idClient } = userClient;
-    console.log('mandou mensagem', { userClient, admin, message })
-    console.log(message)
     const history = await Chat.addMessageToChat({ userClient, admin, message });
     io.to(`Room ${idClient}`).emit('update message', { messages: history });
     const allChats = await Chat.getAllChat();

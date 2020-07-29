@@ -1,5 +1,4 @@
 const OrderRepository = require('../../infrastructure/order/OrderRepository');
-const domain = require('../../domain/order');
 
 exports.ordersAdmin = async (_req, res) => {
   const listProduct = await new OrderRepository().getAll();

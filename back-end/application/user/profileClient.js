@@ -1,10 +1,3 @@
-// exports.profileClient = async (req, res) => {
-//   const { name } = req.body;
-//   const token = req.headers.authorization;
-//   const updatedUser = await profileClient.getUser(token, name);
-
-//   return res.status(200).json(updatedUser);
-// };
 const UserRepository = require('../../infrastructure/user/UserRepository');
 const createJWT = require('../../services/createJWT');
 

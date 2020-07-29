@@ -1,22 +1,25 @@
-// const { getAllDataOrder, getOrderAdmin, putStatusOrder } = require('../../models/ordersAdmin');
+const OrderRepository = require('../../infrastructure/order/OrderRepository');
 
-// exports.ordersAdmin = async (_req, res) => {
-//   const orders = await getAllDataOrder();
-//   return res.status(200).json(orders);
-// };
+exports.ordersAdmin = async (_req, res) => {
+  const listProduct = await new OrderRepository().getAll();
 
-// exports.getOneOrderAdmin = async (req, res) => {
-//   const { id } = req.params;
-//   const order = await getOrderAdmin(id);
+  return res.status(200).json(listProduct);
+};
 
-//   if (!order) return res.status(404).json({ message: 'Order is not exist' });
+exports.getOneOrderAdmin = async (req, res) => {
+  const { id } = req.params;
+  const order = await new OrderRepository().getOrderAdmin(id);
 
-//   return res.status(200).json(order);
-// };
+  if (!order) return res.status(404).json({ message: 'Order is not exist' });
 
-// exports.putStatusOrderAdmin = async (req, res) => {
-//   const { id } = req.params;
-//   await putStatusOrder(id);
+  return res.status(200).json(order);
+};
 
-//   return res.status(200).json({ message: 'Completed order' });
-// };
+exports.putStatusOrderAdmin = async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  await new OrderRepository().putStatusOrder({ id, status });
+
+  return res.status(200).json({ message: 'Completed order' });
+};

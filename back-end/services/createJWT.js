@@ -4,7 +4,7 @@ const path = require('path');
 const enviromentVariable = path.resolve(__dirname, '..', '..', '.env');
 require('dotenv').config({ path: enviromentVariable });
 
-function createTokenJWT( payload ) {
+function createTokenJWT(payload) {
   const jwtConfig = {
     expiresIn: '3d',
     algorithm: 'HS256',

@@ -3,14 +3,14 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
 
-const { listProducts, adminProfile, register, login } = require('./routes');
-// const { login, register, profileClient, listProducts, adminProfile } = require('./routes');
-// const { createOrder, getOrdersClient, getOneOrderClient, ordersAdmin } = require('./routes');
-// const { getOneOrderAdmin, putStatusOrderAdmin } = require('./routes');
-const { invalidLogin, databaseErrorHandling } = require('../middlewares/rescues');
+
+const { login, register, profileClient, listProducts, adminProfile } = require('./routes');
+const { createOrder, getOrdersClient, getOneOrderClient, ordersAdmin } = require('./routes');
+const { getOneOrderAdmin, putStatusOrderAdmin } = require('./routes');
+const { invalidLogin, databaseErrorHandling, emailInvalid } = require('../middlewares/rescues');
 const { updateNameMiddleware, userValidMiddleware } = require('../middlewares/index');
 const { validRegisterMiddleware, validLoginMiddleware } = require('../middlewares/index');
-// const { validOrderMiddleware } = require('../middlewares/index');
+const { validOrderMiddleware, routeParamsValid } = require('../middlewares/index');
 
 const app = express();
 
@@ -21,20 +21,20 @@ app.use(express.static(path.resolve(__dirname, '..', 'public')));
 
 const apiTrybeer = express.Router();
 
-apiTrybeer.post('/register', validRegisterMiddleware, register);
+apiTrybeer.post('/register', validRegisterMiddleware, emailInvalid(register));
 apiTrybeer.post('/login', validLoginMiddleware, invalidLogin(login));
 
 apiTrybeer.get('/admin/profile', databaseErrorHandling(adminProfile));
-// apiTrybeer.get('/admin/orders', userValidMiddleware, databaseErrorHandling(ordersAdmin));
-// apiTrybeer.get('/admin/orders/:id', userValidMiddleware, databaseErrorHandling(getOneOrderAdmin));
-// apiTrybeer.put('/admin/orders/:id', userValidMiddleware, databaseErrorHandling(putStatusOrderAdmin));
+apiTrybeer.get('/admin/orders', userValidMiddleware, databaseErrorHandling(ordersAdmin));
+apiTrybeer.get('/admin/orders/:id', userValidMiddleware, routeParamsValid, databaseErrorHandling(getOneOrderAdmin));
+apiTrybeer.put('/admin/orders/:id', userValidMiddleware, routeParamsValid, databaseErrorHandling(putStatusOrderAdmin));
 
 apiTrybeer.get('/products', databaseErrorHandling(listProducts));
 
-// apiTrybeer.get('/orders', userValidMiddleware, databaseErrorHandling(getOrdersClient));
-// apiTrybeer.get('/orders/:id', userValidMiddleware, databaseErrorHandling(getOneOrderClient));
-// apiTrybeer.put('/profile', userValidMiddleware, updateNameMiddleware, databaseErrorHandling(profileClient));
-// apiTrybeer.post('/checkout', userValidMiddleware, validOrderMiddleware, databaseErrorHandling(createOrder));
+apiTrybeer.get('/orders', userValidMiddleware, databaseErrorHandling(getOrdersClient));
+apiTrybeer.get('/orders/:id', userValidMiddleware, routeParamsValid, databaseErrorHandling(getOneOrderClient));
+apiTrybeer.put('/profile', userValidMiddleware, updateNameMiddleware, databaseErrorHandling(profileClient));
+apiTrybeer.post('/checkout', userValidMiddleware, validOrderMiddleware, databaseErrorHandling(createOrder));
 
 app.use(apiTrybeer);
 

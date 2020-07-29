@@ -2,7 +2,7 @@ const { validLoginMiddleware } = require('./loginValid');
 const { validRegisterMiddleware } = require('./register');
 const { userValidMiddleware } = require('./userValid');
 const { updateNameMiddleware } = require('./profile');
-const { validOrderMiddleware } = require('./orderValid');
+const { validOrderMiddleware, routeParamsValid } = require('./orderValid');
 
 module.exports = {
   validLoginMiddleware,
@@ -10,4 +10,5 @@ module.exports = {
   userValidMiddleware,
   updateNameMiddleware,
   validOrderMiddleware,
+  routeParamsValid,
 };

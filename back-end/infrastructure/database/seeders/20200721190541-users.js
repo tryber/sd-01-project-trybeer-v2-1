@@ -1,7 +1,5 @@
-'use strict';
-
 module.exports = {
-  up: async (queryInterface) => (
+  up: async queryInterface => (
     queryInterface.bulkInsert(
       'Users',
       [
@@ -17,10 +15,16 @@ module.exports = {
           email: 'teste@gmail.com',
           role: 'client',
         },
+        {
+          name: 'ladrão de sarzedo',
+          password: 'U2FsdGVkX19ikiquJg2n2mo3UKtKm5DZWXL+VI3ju0s=',
+          email: 'victor@gmail.com',
+          role: 'client',
+        },
       ],
       {},
     )
   ),
 
-  down: async (queryInterface) => queryInterface.bulkDelete('Users', null, {}),
+  down: async queryInterface => queryInterface.bulkDelete('Users', null, {}),
 };

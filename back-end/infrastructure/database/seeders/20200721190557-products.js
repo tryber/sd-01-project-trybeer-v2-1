@@ -1,7 +1,5 @@
-'use strict';
-
 module.exports = {
-  up: async (queryInterface) => (
+  up: async queryInterface => (
     queryInterface.bulkInsert(
       'Products',
       [
@@ -65,5 +63,5 @@ module.exports = {
     )
   ),
 
-  down: async (queryInterface) => queryInterface.bulkDelete('Products', null, {}),
+  down: async queryInterface => queryInterface.bulkDelete('Products', null, {}),
 };

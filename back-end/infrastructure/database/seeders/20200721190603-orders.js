@@ -1,21 +1,47 @@
-'use strict';
-
 module.exports = {
-  up: async (queryInterface) => (
+  up: async queryInterface => (
     queryInterface.bulkInsert(
       'Orders',
       [
         {
-          user_id: 2,
+          id_user: 2,
           data: new Date(),
           address: 'Belo Horizonte',
           address_number: 1001,
-          status: 0,
+          status: 'Pendente',
+        },
+        {
+          id_user: 2,
+          data: new Date(),
+          address: 'Belo Horizonte',
+          address_number: 1001,
+          status: 'Entregue',
+        },
+        {
+          id_user: 2,
+          data: new Date(),
+          address: 'Belo Horizonte',
+          address_number: 1001,
+          status: 'Entregue',
+        },
+        {
+          id_user: 3,
+          data: new Date(),
+          address: 'Sarzedo',
+          address_number: 10,
+          status: 'Pendente',
+        },
+        {
+          id_user: 3,
+          data: new Date(),
+          address: 'Sarzedo',
+          address_number: 10,
+          status: 'Preparando',
         },
       ],
       {},
     )
   ),
 
-  down: async (queryInterface) => queryInterface.bulkDelete('Orders', null, {}),
+  down: async queryInterface => queryInterface.bulkDelete('Orders', null, {}),
 };

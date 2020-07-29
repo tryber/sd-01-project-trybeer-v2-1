@@ -19,7 +19,7 @@ const Product = attributes({
     dataProduct() {
       return this;
     }
-  }
+  },
 );
 
 module.exports = Product;

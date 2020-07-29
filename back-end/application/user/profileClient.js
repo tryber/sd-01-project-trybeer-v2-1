@@ -1,9 +1,11 @@
-// const profileClient = require('../../models/profileClient');
+const UserRepository = require('../../infrastructure/user/UserRepository');
+const createJWT = require('../../services/createJWT');
 
-// exports.profileClient = async (req, res) => {
-//   const { name } = req.body;
-//   const token = req.headers.authorization;
-//   const updatedUser = await profileClient.getUser(token, name);
+exports.profileClient = async (req, res) => {
+  const dataProfile = await new UserRepository().updateProfileClient(req.body, req.payload);
 
-//   return res.status(200).json(updatedUser);
-// };
+  const { name, email, role, id_user } = dataProfile;
+  const token = createJWT({ name, email, role, id_user });
+
+  return res.status(200).json({ name, email, role, token });
+};

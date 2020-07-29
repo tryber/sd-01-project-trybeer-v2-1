@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   up: async (queryInterface, Sequelize) => (
     queryInterface.createTable('Orders', {
@@ -9,7 +7,7 @@ module.exports = {
         autoIncrement: true,
         allowNull: false,
       },
-      user_id: {
+      id_user: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -31,11 +29,12 @@ module.exports = {
         allowNull: false,
       },
       status: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
+        defaultValue: 'Pendente',
       },
     })
   ),
 
-  down: async (queryInterface) => queryInterface.dropTable('Orders'),
+  down: async queryInterface => queryInterface.dropTable('Orders'),
 };

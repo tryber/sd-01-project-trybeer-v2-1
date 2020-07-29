@@ -4,8 +4,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding-top: 120px;
   min-height: 100vh;
+  padding-top: 120px;
 }
 
 .Orders .message-orders {

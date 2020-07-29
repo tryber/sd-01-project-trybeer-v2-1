@@ -5,12 +5,14 @@ exports.getTitle = (path, idExist) => {
     '/profile': 'Meu perfil',
     '/checkout': 'Finalizar',
     '/products': 'Trybeer',
+    '/chat': 'Conversa'
   };
   return titles[path];
 };
 
 exports.validateLocalUser = (data) => {
   if (!data) return false;
+  console.log(data, 'data');
   if (!data.name || !data.token || !data.email) return false;
   return data;
 }

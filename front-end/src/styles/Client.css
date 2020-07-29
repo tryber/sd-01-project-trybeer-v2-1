@@ -1,0 +1,18 @@
+.Client {
+  background: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  color: black;
+  margin: 5px;
+  min-width: 200px;
+  padding: 10px 10px 10px 40px;
+  text-decoration: none;
+  transition: transform 0.2s;
+  width: 40%;
+}
+
+.Client:hover {
+  background: black;
+  color: white;
+  transform: scale( 1.1 );
+}

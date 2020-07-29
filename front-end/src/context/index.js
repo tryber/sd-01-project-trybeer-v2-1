@@ -7,17 +7,21 @@ const TrybeerContext = createContext();
 const TrybeerProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [carBuyer, setCarBuyer] = useState({ list: [], total: 0, });
+  const [chat, setChats] = useState();
 
   const saveCarBuyer = (obj) => {
     saveCar(obj);
     setCarBuyer(obj);
   }
+  
   const context = {
     carBuyer,
     user,
     saveCarBuyer,
     setUser,
     setCarBuyer,
+    chat,
+    setChats,
   };
 
   return (

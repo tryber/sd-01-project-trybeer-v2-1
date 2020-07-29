@@ -29,7 +29,6 @@ const getOrders = async () => {
 function Orders() {
   const [ordersAdmin, setOrdersAdmin] = useState();
   const [isFetching, setIsFetching] = useState(false);
-
   useEffect(() => {
     if (!isFetching && !ordersAdmin) {
       setIsFetching(true);
@@ -39,15 +38,11 @@ function Orders() {
       });
     }
   }, [isFetching]);
-
   return (
     <section className="Admin Orders-Admin">
       <NavBar />
       {
-        isFetching &&
-        <section className="container">
-          <h1 className="loader"></h1>
-        </section>
+        isFetching && <section className="container"><h1 className="loader"></h1></section>
       }
       {!isFetching && <section className="list-orders">
         {ordersAdmin && ordersAdmin.map((result, index) => <CardOrdersAdmin orders={result} index={index} key={index} />)}
